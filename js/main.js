@@ -457,17 +457,17 @@ function createYesterdayGameCard(game) {
             </div>
             
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}; font-weight: 700;">${awayTeam}</span> 
-                <span style="color: #64748b;">@</span> 
-                <span style="color: ${homeTeamColors.primary}; font-weight: 700;">${homeTeam}</span>
+                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
+                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
+                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
                     <div>
                         <strong>🎯 Predicted:</strong><br>
-                        <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
-                            ${predictedWinner}
+                        <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
+                            ${getTeamNameWithLogo(game.predicted_winner, '20px')}
                         </span><br>
                         <small style="color: #64748b;">Score: ${game.predicted_score.join('-')}</small>
                     </div>
@@ -476,8 +476,8 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, ${isCorrect ? '#f0fdf4' : '#fef2f2'} 0%, ${isCorrect ? '#dcfce7' : '#fecaca'} 100%);">
                     <div>
                         <strong>🏁 Actual:</strong><br>
-                        <span style="color: ${game.actual_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
-                            ${actualWinner}
+                        <span style="color: ${game.actual_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
+                            ${getTeamNameWithLogo(game.actual_winner, '20px')}
                         </span><br>
                         <small style="color: #64748b;">Score: ${game.actual_score.join('-')}</small>
                     </div>
@@ -675,6 +675,23 @@ function getTeamName(teamCode) {
         return teamsData[teamCode].name;
     }
     return teamCode; // Fallback to code if team not found
+}
+
+function getTeamLogo(teamCode) {
+    if (teamsData[teamCode] && teamsData[teamCode].logo) {
+        return teamsData[teamCode].logo;
+    }
+    return null; // No logo available
+}
+
+function getTeamNameWithLogo(teamCode, size = '20px') {
+    const teamName = getTeamName(teamCode);
+    const teamLogo = getTeamLogo(teamCode);
+    
+    if (teamLogo) {
+        return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain;"/>${teamName}`;
+    }
+    return teamName;
 }
 
 function getTeamColors(teamCode) {

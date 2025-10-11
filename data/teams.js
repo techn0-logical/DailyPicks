@@ -80,6 +80,7 @@ const MLB_TEAMS = {
             "primary": "#0C2340",
             "secondary": "#FA4616"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/116.svg",
         "abbreviations": ["DET", "DET"]
     },
     "KCR": {
@@ -142,6 +143,7 @@ const MLB_TEAMS = {
             "primary": "#0C2C56",
             "secondary": "#005C5C"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/136.svg",
         "abbreviations": ["SEA", "SEA"]
     },
     "TEX": {
