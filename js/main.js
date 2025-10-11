@@ -468,8 +468,7 @@ function createYesterdayGameCard(game) {
                         <strong>🎯 Predicted:</strong><br>
                         <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
                             ${getTeamNameWithLogo(game.predicted_winner, '20px')}
-                        </span><br>
-                        <small style="color: #64748b;">Score: ${game.predicted_score.join('-')}</small>
+                        </span>
                     </div>
                 </div>
                 

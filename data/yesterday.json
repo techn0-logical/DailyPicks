@@ -18,7 +18,6 @@
             "away_team": "DET",
             "predicted_winner": "SEA",
             "actual_winner": "SEA",
-            "predicted_score": [2, 3],
             "actual_score": [2, 3],
             "confidence": 52.3,
             "win_probability": 0.523,
