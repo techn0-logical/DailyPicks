@@ -145,28 +145,70 @@ function populateTodaySection() {
     
     if (!summaryDiv || !gamesDiv || !todayData) return;
     
-    // Create summary
+    // Create summary with pending game status
     const summary = todayData.summary;
+    const hasPendingGames = summary.pending_games > 0;
+    
     summaryDiv.innerHTML = `
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-card__value">${summary.total_games}</div>
-                <div class="stat-card__label">Games Today</div>
+        ${hasPendingGames ? `
+            <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                <h3 style="color: #92400e; margin: 0; font-size: 1.25rem;">⏳ PREDICTIONS ACTIVE</h3>
+                <p style="color: #92400e; margin: 0.5rem 0 0 0; font-weight: 600;">${summary.status}</p>
             </div>
-            <div class="stat-card">
+        ` : ''}
+        
+        <div class="stats-grid">
+            <div class="stat-card" style="border-left: 4px solid #2563eb;">
+                <div class="stat-card__value">${summary.total_games}</div>
+                <div class="stat-card__label">Total Predictions</div>
+                <div class="stat-card__sublabel">Made Today</div>
+            </div>
+            
+            ${summary.pending_games !== undefined ? `
+                <div class="stat-card" style="border-left: 4px solid #f59e0b;">
+                    <div class="stat-card__value">${summary.pending_games}</div>
+                    <div class="stat-card__label">Pending Games</div>
+                    <div class="stat-card__sublabel">⏳ Awaiting Results</div>
+                </div>
+            ` : ''}
+            
+            ${summary.completed_games !== undefined ? `
+                <div class="stat-card" style="border-left: 4px solid #059669;">
+                    <div class="stat-card__value">${summary.completed_games}</div>
+                    <div class="stat-card__label">Completed Games</div>
+                    <div class="stat-card__sublabel">Results Available</div>
+                </div>
+            ` : ''}
+            
+            <div class="stat-card" style="border-left: 4px solid #7c3aed;">
                 <div class="stat-card__value">${summary.avg_confidence}%</div>
                 <div class="stat-card__label">Avg Confidence</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-card__value">${summary.top_picks.length}</div>
-                <div class="stat-card__label">Top Picks</div>
+                <div class="stat-card__sublabel">${getConfidenceLevel(summary.avg_confidence).label}</div>
             </div>
         </div>
-        ${summary.top_picks.length > 0 ? `
-        <div style="margin-top: 1rem;">
-            <h4>Today's Top Pick:</h4>
-            <p><strong>${getTeamName(summary.top_picks[0].pick)}</strong> - ${summary.top_picks[0].confidence}% confidence</p>
-            <p><em>${summary.top_picks[0].reasoning}</em></p>
+        
+        ${summary.top_picks && summary.top_picks.length > 0 ? `
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
+            <h4 style="color: #1e40af; margin-bottom: 0.75rem; font-size: 1rem;">🎯 Today's Featured Pick:</h4>
+            <div style="color: #1e40af;">
+                <strong>${getTeamName(summary.top_picks[0].pick)}</strong> - ${summary.top_picks[0].confidence}% confidence
+                <br><em style="color: #64748b; font-size: 0.875rem;">${summary.top_picks[0].reasoning}</em>
+            </div>
+        </div>
+        ` : ''}
+        
+        ${todayData.prediction_notes && todayData.prediction_notes.length > 0 ? `
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h4 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1rem;">📊 Prediction Analysis:</h4>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #475569;">
+                ${todayData.prediction_notes.map(note => `<li style="margin-bottom: 0.5rem;">${note}</li>`).join('')}
+            </ul>
+        </div>
+        ` : ''}
+        
+        ${todayData.pending_message ? `
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 0.75rem; border: 1px solid #0284c7; text-align: center;">
+            <p style="color: #0c4a6e; margin: 0; font-weight: 600; font-style: italic;">${todayData.pending_message}</p>
         </div>
         ` : ''}
     `;
@@ -368,52 +410,90 @@ function createTodayGameCard(game) {
     const homeTeamColors = getTeamColors(game.home_team);
     const awayTeamColors = getTeamColors(game.away_team);
     const confidenceLevel = getConfidenceLevel(game.confidence);
+    const isPending = game.status === 'pending' || game.game_status?.includes('PENDING');
     
     return `
-        <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}" data-confidence="${game.confidence}">
+        <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}" 
+             data-confidence="${game.confidence}" 
+             style="${isPending ? 'border-left: 6px solid #f59e0b; background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);' : ''}">
+            
             <div class="game-card__header">
                 <span class="game-card__time">
-                    🕑 ${game.game_time}
+                    ${isPending ? '⏳ ' + (game.game_status || 'PENDING') : '� ' + (game.game_time || 'TBD')}
                 </span>
-                <span class="badge ${getBadgeClass(game.recommendation)}">
-                    ${game.recommendation}
+                <span class="badge ${isPending ? 'badge--warning' : getBadgeClass(game.recommendation)}">
+                    ${isPending ? '⏳ Pending' : game.recommendation}
                 </span>
             </div>
+            
             <div class="game-card__matchup">
                 <span style="color: ${awayTeamColors.primary}; font-weight: 700;">${awayTeam}</span> 
                 <span style="color: #64748b;">@</span> 
                 <span style="color: ${homeTeamColors.primary}; font-weight: 700;">${homeTeam}</span>
             </div>
-            <div class="game-card__prediction">
+            
+            <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
                 <div>
-                    <strong style="color: #0f172a;">Pick:</strong> 
-                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
+                    <strong style="color: #0f172a;">🎯 Predicted Winner:</strong><br>
+                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem;">
                         ${predictedWinner}
                     </span>
                 </div>
                 <div class="game-card__confidence">${game.confidence}%</div>
             </div>
+            
             <div class="confidence-bar">
                 <div class="confidence-bar__fill" style="width: ${game.confidence}%"></div>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.875rem;">
+            
+            <div style="display: flex; justify-content: space-between; margin: 1rem 0; font-size: 0.875rem;">
                 <div style="color: #64748b;">
                     <strong>Win Probability:</strong> ${Math.round(game.win_probability * 100)}%
                 </div>
                 <div style="color: #64748b;">
-                    <strong>Predicted Score:</strong> ${game.predicted_score.join('-')}
+                    <strong>Confidence Level:</strong> 
+                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.25rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
                 </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Confidence Level:</span>
-                <span class="badge badge--${confidenceLevel.type}" style="font-size: 0.625rem;">${confidenceLevel.label}</span>
-            </div>
+            
+            ${game.model_used ? `
+                <div style="margin-bottom: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #3b82f6;">
+                    <span style="font-size: 0.75rem; color: #1e40af; font-weight: 600;">🤖 Model:</span>
+                    <span style="font-size: 0.875rem; color: #1e40af; margin-left: 0.5rem;">${game.model_used}</span>
+                    ${game.prediction_time ? `<br><span style="font-size: 0.75rem; color: #64748b;">⏰ Made: ${game.prediction_time}</span>` : ''}
+                </div>
+            ` : ''}
+            
+            ${isPending && game.actual_result ? `
+                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.5rem; border: 1px solid #f59e0b;">
+                    <span style="font-size: 0.75rem; color: #92400e; font-weight: 600;">📊 Current Status:</span>
+                    <p style="font-size: 0.875rem; color: #92400e; margin: 0.25rem 0 0 0; font-weight: 600;">${game.actual_result}</p>
+                </div>
+            ` : ''}
+            
+            ${game.analysis ? `
+                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 0.5rem; border: 1px solid #22c55e;">
+                    <span style="font-size: 0.75rem; color: #166534; font-weight: 600;">💡 Analysis:</span>
+                    <p style="font-size: 0.875rem; color: #166534; margin: 0.25rem 0 0 0; font-style: italic;">${game.analysis}</p>
+                </div>
+            ` : ''}
+            
+            ${game.predicted_score ? `
+                <div style="margin-bottom: 1rem; padding: 0.5rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0; text-align: center;">
+                    <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">📊 Predicted Final Score:</span>
+                    <div style="font-size: 1.125rem; font-weight: 700; color: #0f172a; margin-top: 0.25rem;">
+                        <span style="color: ${awayTeamColors.primary};">${awayTeam}</span> 
+                        <span style="color: #64748b;">${game.predicted_score[0]} - ${game.predicted_score[1]}</span> 
+                        <span style="color: ${homeTeamColors.primary};">${homeTeam}</span>
+                    </div>
+                </div>
+            ` : ''}
+            
             ${game.key_factors && game.key_factors.length > 0 ? `
-                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
-                    <strong style="color: #475569; font-size: 0.875rem;">Key Factors:</strong>
-                    <ul style="margin: 0.5rem 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
-                        ${game.key_factors.slice(0, 3).map(factor => `<li>${factor}</li>`).join('')}
-                        ${game.key_factors.length > 3 ? `<li style="color: #9ca3af;">+${game.key_factors.length - 3} more factors</li>` : ''}
+                <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                    <strong style="color: #475569; font-size: 0.875rem;">🔍 Key Factors:</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
+                        ${game.key_factors.map(factor => `<li style="margin-bottom: 0.25rem;">${factor}</li>`).join('')}
                     </ul>
                 </div>
             ` : ''}

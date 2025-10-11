@@ -1,49 +1,49 @@
 {
     "date": "2025-10-11",
     "summary": {
-        "total_games": 6,
+        "total_games": 1,
+        "pending_games": 1,
+        "completed_games": 0,
         "top_picks": [
             {
                 "game_id": "game_101",
-                "confidence": 92,
-                "pick": "LAA",
-                "reasoning": "Strong pitching matchup favors Angels"
+                "confidence": 55.6,
+                "pick": "MIL",
+                "reasoning": "Home field advantage and competitive matchup favor Brewers"
             }
         ],
-        "avg_confidence": 78
+        "avg_confidence": 55.6,
+        "status": "Waiting for game results..."
     },
     "games": [
         {
             "id": "game_101",
-            "home_team": "LAA",
-            "away_team": "TEX",
-            "game_time": "19:07",
-            "predicted_winner": "LAA",
-            "predicted_score": [6, 4],
-            "confidence": 92,
-            "win_probability": 0.73,
+            "home_team": "MIL",
+            "away_team": "CHC",
+            "game_time": "TBD",
+            "predicted_winner": "MIL",
+            "predicted_score": [4, 5],
+            "confidence": 55.6,
+            "win_probability": 0.556,
+            "model_used": "XGBoost (simple_fallback)",
+            "prediction_time": "October 11, 2025 at 10:56 AM",
             "key_factors": [
-                "Angels pitcher ERA 2.31 vs Rangers",
-                "Rangers 2-8 in last 10 road games",
-                "Angels strong home record this month"
+                "Home field advantage for Brewers",
+                "Competitive but not too close matchup expected",
+                "Higher confidence than yesterday's prediction (55.6% vs 52.3%)"
             ],
-            "recommendation": "Strong Pick"
-        },
-        {
-            "id": "game_102",
-            "home_team": "BOS",
-            "away_team": "TBR",
-            "game_time": "19:10",
-            "predicted_winner": "BOS",
-            "predicted_score": [5, 3],
-            "confidence": 68,
-            "win_probability": 0.61,
-            "key_factors": [
-                "Red Sox home field advantage",
-                "Rays bullpen fatigue",
-                "Weather conditions favor hitters"
-            ],
-            "recommendation": "Moderate Pick"
+            "recommendation": "Medium Pick",
+            "status": "pending",
+            "game_status": "⏳ PENDING",
+            "actual_result": "TBD (game not yet completed)",
+            "analysis": "The model favors the Brewers at home with medium confidence. 55.6% probability suggests a competitive but not too close game."
         }
-    ]
+    ],
+    "prediction_notes": [
+        "The model favors the Brewers at home with medium confidence",
+        "55.6% probability suggests a competitive but not too close game", 
+        "Higher confidence than yesterday's prediction (55.6% vs 52.3%)",
+        "Home field advantage likely factoring into the Brewers prediction"
+    ],
+    "pending_message": "The game is still pending, so we'll need to wait for the final result to see if the prediction is correct! 🍺⚾"
 }
