@@ -201,41 +201,52 @@ function populatePerformanceSection() {
     
     performanceDiv.innerHTML = `
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid #2563eb;">
                 <div class="stat-card__value">${modelStats.overall_accuracy}%</div>
                 <div class="stat-card__label">Overall Accuracy</div>
+                <div class="stat-card__sublabel">${modelStats.total_predictions} total predictions</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-card__value">${modelStats.total_predictions}</div>
-                <div class="stat-card__label">Total Predictions</div>
+            <div class="stat-card" style="border-left: 4px solid #059669;">
+                <div class="stat-card__value">${modelStats.correct_predictions}</div>
+                <div class="stat-card__label">Correct Predictions</div>
+                <div class="stat-card__sublabel">Out of ${modelStats.total_predictions}</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid #d97706;">
                 <div class="stat-card__value">${recentPerf.last_7_days.accuracy}%</div>
                 <div class="stat-card__label">Last 7 Days</div>
+                <div class="stat-card__sublabel">${recentPerf.last_7_days.predictions} predictions</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid #0284c7;">
                 <div class="stat-card__value">${recentPerf.last_30_days.accuracy}%</div>
                 <div class="stat-card__label">Last 30 Days</div>
+                <div class="stat-card__sublabel">${recentPerf.last_30_days.predictions} predictions</div>
             </div>
         </div>
         
-        <div style="margin-top: 2rem;">
-            <h4>Confidence Bracket Performance:</h4>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h4 style="margin-bottom: 1rem; color: #0f172a; font-size: 1.125rem;">📊 Confidence Bracket Performance</h4>
             <div class="stats-grid">
-                ${Object.entries(modelStats.confidence_brackets).map(([bracket, data]) => `
-                    <div class="stat-card">
-                        <div class="stat-card__value">${data.accuracy}%</div>
-                        <div class="stat-card__label">${bracket} Confidence</div>
-                        <div style="font-size: 0.75rem; color: #718096;">${data.predictions} predictions</div>
-                    </div>
-                `).join('')}
+                ${Object.entries(modelStats.confidence_brackets).map(([bracket, data]) => {
+                    const color = data.accuracy >= 80 ? '#059669' : data.accuracy >= 70 ? '#d97706' : '#dc2626';
+                    return `
+                        <div class="stat-card" style="border-left: 4px solid ${color}; background: white;">
+                            <div class="stat-card__value">${data.accuracy}%</div>
+                            <div class="stat-card__label">${bracket} Confidence</div>
+                            <div class="stat-card__sublabel">${data.predictions} predictions</div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
         </div>
         
-        <div style="margin-top: 2rem;">
-            <h4>Model Insights:</h4>
-            <ul>
-                ${performanceData.model_insights.map(insight => `<li>${insight}</li>`).join('')}
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
+            <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">🧠 Model Insights & Performance Notes</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                ${performanceData.model_insights.map(insight => `
+                    <li style="margin-bottom: 0.75rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                        <span style="color: #1e40af; font-weight: 600;">💡</span> ${insight}
+                    </li>
+                `).join('')}
             </ul>
         </div>
     `;
@@ -248,9 +259,11 @@ function createYesterdayGameCard(game) {
     const predictedWinner = getTeamName(game.predicted_winner);
     const actualWinner = getTeamName(game.actual_winner);
     const isCorrect = game.result === 'correct';
+    const homeTeamColors = getTeamColors(game.home_team);
+    const awayTeamColors = getTeamColors(game.away_team);
     
     return `
-        <div class="game-card">
+        <div class="game-card" style="border-left: 4px solid ${isCorrect ? '#059669' : '#dc2626'}">
             <div class="game-card__header">
                 <span class="game-card__time">Final</span>
                 <span class="badge ${isCorrect ? 'badge--success' : 'badge--danger'}">
@@ -258,19 +271,32 @@ function createYesterdayGameCard(game) {
                 </span>
             </div>
             <div class="game-card__matchup">
-                ${awayTeam} @ ${homeTeam}
+                <span style="color: ${awayTeamColors.primary}">${awayTeam}</span> @ <span style="color: ${homeTeamColors.primary}">${homeTeam}</span>
             </div>
             <div class="game-card__prediction">
-                <span>Predicted: ${predictedWinner}</span>
-                <span>Score: ${game.predicted_score.join('-')}</span>
+                <div>
+                    <strong>Predicted:</strong> ${predictedWinner}<br>
+                    <small>Score: ${game.predicted_score.join('-')}</small>
+                </div>
+                <div class="game-card__confidence">${game.confidence}%</div>
             </div>
             <div class="game-card__prediction">
-                <span>Actual: ${actualWinner}</span>
-                <span>Score: ${game.actual_score.join('-')}</span>
+                <div>
+                    <strong>Actual:</strong> ${actualWinner}<br>
+                    <small>Score: ${game.actual_score.join('-')}</small>
+                </div>
+                <div style="font-size: 0.875rem; color: #64748b; text-align: right;">
+                    ${isCorrect ? '+1 Point' : '0 Points'}
+                </div>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
-                Confidence: ${game.confidence}%
-            </div>
+            ${game.key_factors && game.key_factors.length > 0 ? `
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                    <strong style="color: #475569;">Key Factors:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
+                        ${game.key_factors.map(factor => `<li>${factor}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
         </div>
     `;
 }
@@ -280,34 +306,55 @@ function createTodayGameCard(game) {
     const homeTeam = getTeamName(game.home_team);
     const awayTeam = getTeamName(game.away_team);
     const predictedWinner = getTeamName(game.predicted_winner);
+    const homeTeamColors = getTeamColors(game.home_team);
+    const awayTeamColors = getTeamColors(game.away_team);
+    const confidenceLevel = getConfidenceLevel(game.confidence);
     
     return `
-        <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}">
+        <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}" data-confidence="${game.confidence}">
             <div class="game-card__header">
-                <span class="game-card__time">${game.game_time}</span>
-                <span class="badge ${getBadgeClass(game.recommendation)}">${game.recommendation}</span>
+                <span class="game-card__time">
+                    🕑 ${game.game_time}
+                </span>
+                <span class="badge ${getBadgeClass(game.recommendation)}">
+                    ${game.recommendation}
+                </span>
             </div>
             <div class="game-card__matchup">
-                ${awayTeam} @ ${homeTeam}
+                <span style="color: ${awayTeamColors.primary}; font-weight: 700;">${awayTeam}</span> 
+                <span style="color: #64748b;">@</span> 
+                <span style="color: ${homeTeamColors.primary}; font-weight: 700;">${homeTeam}</span>
             </div>
             <div class="game-card__prediction">
-                <span>Pick: <strong>${predictedWinner}</strong></span>
-                <span class="game-card__confidence">${game.confidence}%</span>
+                <div>
+                    <strong style="color: #0f172a;">Pick:</strong> 
+                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
+                        ${predictedWinner}
+                    </span>
+                </div>
+                <div class="game-card__confidence">${game.confidence}%</div>
             </div>
             <div class="confidence-bar">
                 <div class="confidence-bar__fill" style="width: ${game.confidence}%"></div>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
-                Win Probability: ${Math.round(game.win_probability * 100)}%
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.875rem;">
+                <div style="color: #64748b;">
+                    <strong>Win Probability:</strong> ${Math.round(game.win_probability * 100)}%
+                </div>
+                <div style="color: #64748b;">
+                    <strong>Predicted Score:</strong> ${game.predicted_score.join('-')}
+                </div>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
-                Predicted Score: ${game.predicted_score.join('-')}
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Confidence Level:</span>
+                <span class="badge badge--${confidenceLevel.type}" style="font-size: 0.625rem;">${confidenceLevel.label}</span>
             </div>
             ${game.key_factors && game.key_factors.length > 0 ? `
-                <div style="margin-top: 1rem;">
-                    <strong>Key Factors:</strong>
-                    <ul style="margin: 0.5rem 0; padding-left: 1rem; font-size: 0.875rem;">
-                        ${game.key_factors.map(factor => `<li>${factor}</li>`).join('')}
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                    <strong style="color: #475569; font-size: 0.875rem;">Key Factors:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
+                        ${game.key_factors.slice(0, 3).map(factor => `<li>${factor}</li>`).join('')}
+                        ${game.key_factors.length > 3 ? `<li style="color: #9ca3af;">+${game.key_factors.length - 3} more factors</li>` : ''}
                     </ul>
                 </div>
             ` : ''}
@@ -357,6 +404,27 @@ function getTeamName(teamCode) {
     return teamCode; // Fallback to code if team not found
 }
 
+function getTeamColors(teamCode) {
+    if (teamsData[teamCode] && teamsData[teamCode].colors) {
+        return teamsData[teamCode].colors;
+    }
+    return { primary: '#64748b', secondary: '#94a3b8' }; // Fallback colors
+}
+
+function getConfidenceLevel(confidence) {
+    if (confidence >= 90) {
+        return { type: 'success', label: 'Very High' };
+    } else if (confidence >= 80) {
+        return { type: 'success', label: 'High' };
+    } else if (confidence >= 70) {
+        return { type: 'warning', label: 'Moderate' };
+    } else if (confidence >= 60) {
+        return { type: 'warning', label: 'Low' };
+    } else {
+        return { type: 'danger', label: 'Very Low' };
+    }
+}
+
 function getBadgeClass(recommendation) {
     switch (recommendation) {
         case 'Strong Pick':
@@ -374,9 +442,10 @@ function showErrorMessage(message) {
     const main = document.querySelector('.main .container');
     if (main) {
         main.innerHTML = `
-            <div style="text-align: center; padding: 2rem; background: #fed7d7; border: 1px solid #fc8181; border-radius: 0.5rem; color: #742a2a;">
-                <h3>Error Loading DailyPicks</h3>
-                <p>${message}</p>
+            <div style="text-align: center; padding: 3rem; background: linear-gradient(135deg, #fecaca 0%, #fed7d7 100%); border: 2px solid #ef4444; border-radius: 1rem; color: #991b1b; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">⚠️ Error Loading DailyPicks</h3>
+                <p style="font-size: 1.125rem;">${message}</p>
+                <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #dc2626; color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer;">Retry</button>
             </div>
         `;
     }
