@@ -226,7 +226,7 @@ function populateTomorrowSection() {
     
     // Create summary
     const summary = tomorrowData.summary;
-    summaryDiv.innerHTML = `
+    let summaryHtml = `
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-card__value">${summary.total_games}</div>
@@ -246,7 +246,55 @@ function populateTomorrowSection() {
             <p>${summary.early_favorites.map(team => getTeamName(team)).join(', ')}</p>
         </div>
     `;
-    
+
+    // If detailed playoff prediction summary exists, show a special card at the top
+    if (tomorrowData.detailed_prediction_summary) {
+        const d = tomorrowData.detailed_prediction_summary;
+        summaryHtml += `
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 0.75rem; border: 2px solid #0284c7; box-shadow: 0 4px 12px rgba(2,132,199,0.08);">
+            <h3 style="color: #0f172a; font-size: 1.25rem; margin-bottom: 0.5rem;">🎯 ${d.title || 'Detailed Prediction Summary'}</h3>
+            <div style="margin-bottom: 0.75rem; color: #1e40af; font-weight: 600;">
+                <span>🏟️ <strong>Game:</strong> ${d.game_details.matchup}</span><br>
+                <span>📅 <strong>Date:</strong> ${d.game_details.date}</span><br>
+                <span>🌍 <strong>Venue:</strong> ${d.game_details.venue}</span><br>
+                <span>🎮 <strong>Type:</strong> ${d.game_details.game_type}</span>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+                <span>🏆 <strong>Predicted Winner:</strong> ${d.prediction_results.predicted_winner}</span><br>
+                <span>💡 <strong>Win Probability:</strong> ${d.prediction_results.win_probability}</span><br>
+                <span>💡 <strong>Confidence Level:</strong> ${d.prediction_results.confidence_level}</span><br>
+                <span>🤖 <strong>Model Used:</strong> ${d.prediction_results.model_used}</span>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+                <span>📊 <strong>Assessment:</strong> ${d.game_analysis.assessment}</span>
+                <ul style="margin: 0.5rem 0 0 1.25rem; color: #475569;">
+                    ${d.game_analysis.details.map(line => `<li>${line}</li>`).join('')}
+                </ul>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+                <span>🏠 <strong>Home Field Factor:</strong></span>
+                <ul style="margin: 0.5rem 0 0 1.25rem; color: #475569;">
+                    ${d.home_field_factor.map(line => `<li>${line}</li>`).join('')}
+                </ul>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+                <span>🔍 <strong>Why Low Confidence?</strong></span>
+                <ul style="margin: 0.5rem 0 0 1.25rem; color: #92400e;">
+                    ${d.why_low_confidence.map(line => `<li>${line}</li>`).join('')}
+                </ul>
+            </div>
+            <div>
+                <span>💡 <strong>Key Insights:</strong></span>
+                <ul style="margin: 0.5rem 0 0 1.25rem; color: #166534;">
+                    ${d.key_insights.map(line => `<li>${line}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+        `;
+    }
+
+    summaryDiv.innerHTML = summaryHtml;
+
     // Create game cards
     gamesDiv.innerHTML = tomorrowData.games.map(game => createTomorrowGameCard(game)).join('');
 }
@@ -505,24 +553,35 @@ function createTodayGameCard(game) {
 function createTomorrowGameCard(game) {
     const homeTeam = getTeamName(game.home_team);
     const awayTeam = getTeamName(game.away_team);
-    const earlyPick = getTeamName(game.early_prediction);
-    
+    // Playoff/game_type detection
+    const isPlayoff = game.game_type && game.game_type.toLowerCase().includes('playoff');
+    const predictedWinner = getTeamName(game.predicted_winner || game.early_prediction);
+    const confidence = game.confidence !== undefined ? game.confidence : game.preliminary_confidence;
+    const winProb = game.win_probability !== undefined ? `${(game.win_probability * 100).toFixed(1)}%` : (confidence ? `${confidence}%` : '');
+    const model = game.model_used || '';
+    const analysis = game.analysis || game.key_matchup || '';
     return `
-        <div class="game-card">
+        <div class="game-card${isPlayoff ? ' game-card--featured' : ''}">
             <div class="game-card__header">
-                <span class="game-card__time">${game.game_time}</span>
-                <span class="badge badge--info">Preview</span>
+                <span class="game-card__time">${game.game_time || 'TBD'}</span>
+                <span class="badge badge--${isPlayoff ? 'warning' : 'info'}">${isPlayoff ? 'Playoff' : 'Preview'}</span>
             </div>
             <div class="game-card__matchup">
                 ${awayTeam} @ ${homeTeam}
             </div>
             <div class="game-card__prediction">
-                <span>Early Pick: ${earlyPick}</span>
-                <span class="game-card__confidence">${game.preliminary_confidence}%</span>
+                <span>Predicted Winner: ${predictedWinner}</span>
+                <span class="game-card__confidence">${confidence ? confidence + '%' : ''}</span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
-                ${game.key_matchup}
+                ${analysis}
             </div>
+            ${winProb ? `<div style="margin-top: 0.5rem; font-size: 0.875rem; color: #0284c7;"><strong>Win Probability:</strong> ${winProb}</div>` : ''}
+            ${model ? `<div style="margin-top: 0.5rem; font-size: 0.875rem; color: #1e40af;"><strong>Model:</strong> ${model}</div>` : ''}
+            ${game.confidence_level ? `<div style="margin-top: 0.5rem; font-size: 0.875rem; color: #92400e;"><strong>Confidence Level:</strong> ${game.confidence_level}</div>` : ''}
+            ${game.home_field_factor ? `<div style="margin-top: 0.5rem; font-size: 0.875rem; color: #166534;"><strong>Home Field Factor:</strong> ${game.home_field_factor}</div>` : ''}
+            ${game.why_low_confidence && Array.isArray(game.why_low_confidence) ? `<div style="margin-top: 0.5rem; color: #92400e;"><strong>Why Low Confidence?</strong><ul style="margin: 0.25rem 0 0 1rem;">${game.why_low_confidence.map(f => `<li>${f}</li>`).join('')}</ul></div>` : ''}
+            ${game.key_insights && Array.isArray(game.key_insights) ? `<div style="margin-top: 0.5rem; color: #166534;"><strong>Key Insights:</strong><ul style="margin: 0.25rem 0 0 1rem;">${game.key_insights.map(f => `<li>${f}</li>`).join('')}</ul></div>` : ''}
             ${game.factors_to_monitor && game.factors_to_monitor.length > 0 ? `
                 <div style="margin-top: 1rem;">
                     <strong>Factors to Monitor:</strong>
