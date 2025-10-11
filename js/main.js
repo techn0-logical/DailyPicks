@@ -489,12 +489,6 @@ function createYesterdayGameCard(game) {
                     <span style="font-weight: 700; color: #0f172a; margin-left: 0.5rem;">${game.confidence}%</span>
                     <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
                 </div>
-                <div style="text-align: right;">
-                    <span style="font-size: 0.875rem; color: #64748b;">Result:</span>
-                    <span style="font-weight: 700; color: ${isCorrect ? '#166534' : '#991b1b'}; margin-left: 0.5rem;">
-                        ${isCorrect ? '+1 Point' : '0 Points'}
-                    </span>
-                </div>
             </div>
             
             ${game.model_used ? `
@@ -710,7 +704,7 @@ function getConfidenceLevel(confidence) {
     } else if (confidence >= 60) {
         return { type: 'warning', label: 'Low' };
     } else {
-        return { type: 'danger', label: 'Very Low' };
+        return { type: 'warning', label: 'Low' };
     }
 }
 
