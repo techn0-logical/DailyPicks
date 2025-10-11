@@ -491,14 +491,6 @@ function createYesterdayGameCard(game) {
                 </div>
             </div>
             
-            ${game.model_used ? `
-                <div style="margin-bottom: 1rem; padding: 0.5rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #3b82f6;">
-                    <span style="font-size: 0.75rem; color: #1e40af; font-weight: 600;">🤖 Model:</span>
-                    <span style="font-size: 0.875rem; color: #1e40af; margin-left: 0.5rem;">${game.model_used}</span>
-                    ${game.prediction_time ? `<br><span style="font-size: 0.75rem; color: #64748b;">⏰ Made: ${game.prediction_time}</span>` : ''}
-                </div>
-            ` : ''}
-            
             ${game.notes ? `
                 <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.5rem; border: 1px solid #f59e0b;">
                     <span style="font-size: 0.75rem; color: #92400e; font-weight: 600;">💡 Analysis:</span>
