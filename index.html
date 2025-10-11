@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyPicks - MLB Analytics & Predictions</title>
+    <meta name="description" content="Daily MLB analytics and predictions powered by machine learning">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__brand">
+                <h1 class="header__title">⚾ DailyPicks</h1>
+                <p class="header__subtitle">MLB Analytics & Predictions</p>
+            </div>
+            <div class="header__info">
+                <p class="header__date" id="current-date"></p>
+                <p class="header__updated" id="last-updated"></p>
+            </div>
+        </div>
+    </header>
 
+    <main class="main">
+        <div class="container">
+            <!-- Yesterday's Results Section -->
+            <section class="section" id="yesterday">
+                <h2 class="section__title">Yesterday's Results</h2>
+                <div class="results-summary" id="yesterday-summary">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <div class="games-grid" id="yesterday-games">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Today's Games & Predictions Section -->
+            <section class="section section--featured" id="today">
+                <h2 class="section__title">Today's Games & Predictions</h2>
+                <div class="predictions-summary" id="today-summary">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <div class="games-grid" id="today-games">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Tomorrow's Preview Section -->
+            <section class="section" id="tomorrow">
+                <h2 class="section__title">Tomorrow's Preview</h2>
+                <div class="preview-summary" id="tomorrow-summary">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <div class="games-grid" id="tomorrow-games">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Performance Tracking Section -->
+            <section class="section" id="performance">
+                <h2 class="section__title">Model Performance</h2>
+                <div class="performance-stats" id="performance-stats">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer__disclaimer">
+                Predictions are generated using machine learning models and historical data. 
+                Not financial advice. Please gamble responsibly.
+            </p>
+            <p class="footer__copyright">
+                © 2025 DailyPicks. Data sources: MLB official statistics.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "date": "2025-10-10",
+    "summary": {
+        "total_games": 8,
+        "predictions_made": 8,
+        "correct_predictions": 6,
+        "accuracy": 75.0,
+        "notable_outcomes": [
+            "Yankees upset victory over Astros",
+            "Dodgers dominated as predicted"
+        ]
+    },
+    "games": [
+        {
+            "id": "game_001",
+            "home_team": "NYY",
+            "away_team": "HOU",
+            "predicted_winner": "HOU",
+            "actual_winner": "NYY",
+            "predicted_score": [4, 6],
+            "actual_score": [7, 5],
+            "confidence": 72,
+            "key_factors": ["Astros bullpen struggles", "Yankees hot streak"],
+            "result": "incorrect"
+        },
+        {
+            "id": "game_002",
+            "home_team": "LAD",
+            "away_team": "SDP",
+            "predicted_winner": "LAD",
+            "actual_winner": "LAD",
+            "predicted_score": [8, 4],
+            "actual_score": [9, 3],
+            "confidence": 85,
+            "key_factors": ["Dodgers home advantage", "Padres pitching concerns"],
+            "result": "correct"
+        }
+    ]
+}
