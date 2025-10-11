@@ -1,0 +1,38 @@
+{
+    "date": "2025-10-12",
+    "summary": {
+        "total_games": 7,
+        "early_favorites": ["WSN", "CHC", "MIL"],
+        "games_to_watch": 2
+    },
+    "games": [
+        {
+            "id": "game_201",
+            "home_team": "WSN",
+            "away_team": "PHI",
+            "game_time": "13:05",
+            "early_prediction": "WSN",
+            "preliminary_confidence": 71,
+            "key_matchup": "Nationals ace vs Phillies struggling offense",
+            "factors_to_monitor": [
+                "Weather forecast",
+                "Starting pitcher confirmations",
+                "Injury reports"
+            ]
+        },
+        {
+            "id": "game_202",
+            "home_team": "CHC",
+            "away_team": "STL",
+            "game_time": "14:20",
+            "early_prediction": "CHC",
+            "preliminary_confidence": 64,
+            "key_matchup": "Cubs momentum vs Cardinals inconsistency",
+            "factors_to_monitor": [
+                "Bullpen availability",
+                "Travel fatigue for Cardinals",
+                "Wrigley Field conditions"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "model_stats": {
+        "overall_accuracy": 73.2,
+        "total_predictions": 847,
+        "correct_predictions": 620,
+        "last_updated": "2025-10-11T08:00:00Z",
+        "confidence_brackets": {
+            "90-100%": {
+                "predictions": 23,
+                "accuracy": 91.3
+            },
+            "80-89%": {
+                "predictions": 67,
+                "accuracy": 82.1
+            },
+            "70-79%": {
+                "predictions": 134,
+                "accuracy": 76.8
+            },
+            "60-69%": {
+                "predictions": 189,
+                "accuracy": 68.2
+            },
+            "50-59%": {
+                "predictions": 434,
+                "accuracy": 54.1
+            }
+        }
+    },
+    "recent_performance": {
+        "last_7_days": {
+            "accuracy": 71.4,
+            "predictions": 42,
+            "trend": "stable"
+        },
+        "last_30_days": {
+            "accuracy": 74.8,
+            "predictions": 186,
+            "trend": "improving"
+        }
+    },
+    "model_insights": [
+        "Higher accuracy when home team favored by 70%+",
+        "Struggling with close matchups (50-60% confidence)",
+        "Weather factor integration improved accuracy by 3.2%"
+    ]
+}
