@@ -1,39 +1,43 @@
 {
     "date": "2025-10-10",
     "summary": {
-        "total_games": 8,
-        "predictions_made": 8,
-        "correct_predictions": 6,
-        "accuracy": 75.0,
+        "total_games": 1,
+        "predictions_made": 1,
+        "correct_predictions": 1,
+        "accuracy": 100.0,
         "notable_outcomes": [
-            "Yankees upset victory over Astros",
-            "Dodgers dominated as predicted"
+            "Perfect Day! 100% accuracy in playoffs",
+            "Low confidence prediction proved correct",
+            "Close game (3-2) as model predicted"
         ]
     },
     "games": [
         {
             "id": "game_001",
-            "home_team": "NYY",
-            "away_team": "HOU",
-            "predicted_winner": "HOU",
-            "actual_winner": "NYY",
-            "predicted_score": [4, 6],
-            "actual_score": [7, 5],
-            "confidence": 72,
-            "key_factors": ["Astros bullpen struggles", "Yankees hot streak"],
-            "result": "incorrect"
-        },
-        {
-            "id": "game_002",
-            "home_team": "LAD",
-            "away_team": "SDP",
-            "predicted_winner": "LAD",
-            "actual_winner": "LAD",
-            "predicted_score": [8, 4],
-            "actual_score": [9, 3],
-            "confidence": 85,
-            "key_factors": ["Dodgers home advantage", "Padres pitching concerns"],
-            "result": "correct"
+            "home_team": "SEA",
+            "away_team": "DET",
+            "predicted_winner": "SEA",
+            "actual_winner": "SEA",
+            "predicted_score": [2, 3],
+            "actual_score": [2, 3],
+            "confidence": 52.3,
+            "win_probability": 0.523,
+            "model_used": "XGBoost (simple_fallback)",
+            "prediction_time": "October 10, 2025 at 2:09 PM",
+            "key_factors": [
+                "Playoff unpredictability factor",
+                "Close matchup expected",
+                "Home field advantage for Mariners"
+            ],
+            "result": "correct",
+            "notes": "Despite low confidence (52.3%), model correctly predicted Mariners victory in tight playoff game"
         }
-    ]
+    ],
+    "performance_notes": [
+        "Despite being a low confidence prediction (52.3%), the model was correct",
+        "This was a close game (3-2), which explains the low confidence",
+        "Perfect example of playoff unpredictability - even 'uncertain' predictions can be right",
+        "Your 56.5% overall accuracy got a nice boost from this correct prediction"
+    ],
+    "celebration_message": "Excellent result! A 100% day is always satisfying, especially in the playoffs where games are so unpredictable. 🏆⚾"
 }

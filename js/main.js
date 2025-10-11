@@ -88,29 +88,48 @@ function populateYesterdaySection() {
     
     if (!summaryDiv || !gamesDiv || !yesterdayData) return;
     
-    // Create summary
+    // Create summary with celebration for perfect days
     const summary = yesterdayData.summary;
+    const isPerfectDay = summary.accuracy === 100.0;
+    
     summaryDiv.innerHTML = `
+        ${isPerfectDay ? `
+            <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #22c55e; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                <h3 style="color: #166534; margin: 0; font-size: 1.25rem;">🎉 PERFECT DAY! 🏆</h3>
+                <p style="color: #166534; margin: 0.5rem 0 0 0; font-weight: 600;">100% Accuracy Achievement Unlocked!</p>
+            </div>
+        ` : ''}
+        
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : '#2563eb'};">
                 <div class="stat-card__value">${summary.total_games}</div>
                 <div class="stat-card__label">Total Games</div>
+                <div class="stat-card__sublabel">Predictions Made</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid #059669;">
                 <div class="stat-card__value">${summary.correct_predictions}</div>
                 <div class="stat-card__label">Correct Predictions</div>
+                <div class="stat-card__sublabel">Out of ${summary.total_games}</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : summary.accuracy >= 75 ? '#059669' : summary.accuracy >= 60 ? '#d97706' : '#dc2626'};">
                 <div class="stat-card__value">${summary.accuracy}%</div>
-                <div class="stat-card__label">Accuracy</div>
+                <div class="stat-card__label">Daily Accuracy</div>
+                <div class="stat-card__sublabel">${isPerfectDay ? '🎯 Perfect!' : summary.accuracy >= 75 ? 'Excellent' : summary.accuracy >= 60 ? 'Good' : 'Learning'}</div>
             </div>
         </div>
+        
         ${summary.notable_outcomes.length > 0 ? `
-        <div style="margin-top: 1rem;">
-            <h4>Notable Outcomes:</h4>
-            <ul>
-                ${summary.notable_outcomes.map(outcome => `<li>${outcome}</li>`).join('')}
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h4 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1rem;">📈 Notable Outcomes:</h4>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #475569;">
+                ${summary.notable_outcomes.map(outcome => `<li style="margin-bottom: 0.5rem;">${outcome}</li>`).join('')}
             </ul>
+        </div>
+        ` : ''}
+        
+        ${yesterdayData.celebration_message ? `
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6; text-align: center;">
+            <p style="color: #1e40af; margin: 0; font-weight: 600; font-style: italic;">${yesterdayData.celebration_message}</p>
         </div>
         ` : ''}
     `;
@@ -261,39 +280,79 @@ function createYesterdayGameCard(game) {
     const isCorrect = game.result === 'correct';
     const homeTeamColors = getTeamColors(game.home_team);
     const awayTeamColors = getTeamColors(game.away_team);
+    const confidenceLevel = getConfidenceLevel(game.confidence);
     
     return `
-        <div class="game-card" style="border-left: 4px solid ${isCorrect ? '#059669' : '#dc2626'}">
+        <div class="game-card" style="border-left: 6px solid ${isCorrect ? '#22c55e' : '#dc2626'}; ${isCorrect ? 'background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);' : ''}">
             <div class="game-card__header">
-                <span class="game-card__time">Final</span>
+                <span class="game-card__time">🏁 Final Game</span>
                 <span class="badge ${isCorrect ? 'badge--success' : 'badge--danger'}">
-                    ${isCorrect ? 'Correct' : 'Incorrect'}
+                    ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
                 </span>
             </div>
+            
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}">${awayTeam}</span> @ <span style="color: ${homeTeamColors.primary}">${homeTeam}</span>
+                <span style="color: ${awayTeamColors.primary}; font-weight: 700;">${awayTeam}</span> 
+                <span style="color: #64748b;">@</span> 
+                <span style="color: ${homeTeamColors.primary}; font-weight: 700;">${homeTeam}</span>
             </div>
-            <div class="game-card__prediction">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+                    <div>
+                        <strong>🎯 Predicted:</strong><br>
+                        <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
+                            ${predictedWinner}
+                        </span><br>
+                        <small style="color: #64748b;">Score: ${game.predicted_score.join('-')}</small>
+                    </div>
+                </div>
+                
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, ${isCorrect ? '#f0fdf4' : '#fef2f2'} 0%, ${isCorrect ? '#dcfce7' : '#fecaca'} 100%);">
+                    <div>
+                        <strong>🏁 Actual:</strong><br>
+                        <span style="color: ${game.actual_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700;">
+                            ${actualWinner}
+                        </span><br>
+                        <small style="color: #64748b;">Score: ${game.actual_score.join('-')}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
                 <div>
-                    <strong>Predicted:</strong> ${predictedWinner}<br>
-                    <small>Score: ${game.predicted_score.join('-')}</small>
+                    <span style="font-size: 0.875rem; color: #64748b;">Confidence:</span>
+                    <span style="font-weight: 700; color: #0f172a; margin-left: 0.5rem;">${game.confidence}%</span>
+                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
                 </div>
-                <div class="game-card__confidence">${game.confidence}%</div>
-            </div>
-            <div class="game-card__prediction">
-                <div>
-                    <strong>Actual:</strong> ${actualWinner}<br>
-                    <small>Score: ${game.actual_score.join('-')}</small>
-                </div>
-                <div style="font-size: 0.875rem; color: #64748b; text-align: right;">
-                    ${isCorrect ? '+1 Point' : '0 Points'}
+                <div style="text-align: right;">
+                    <span style="font-size: 0.875rem; color: #64748b;">Result:</span>
+                    <span style="font-weight: 700; color: ${isCorrect ? '#166534' : '#991b1b'}; margin-left: 0.5rem;">
+                        ${isCorrect ? '+1 Point' : '0 Points'}
+                    </span>
                 </div>
             </div>
+            
+            ${game.model_used ? `
+                <div style="margin-bottom: 1rem; padding: 0.5rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #3b82f6;">
+                    <span style="font-size: 0.75rem; color: #1e40af; font-weight: 600;">🤖 Model:</span>
+                    <span style="font-size: 0.875rem; color: #1e40af; margin-left: 0.5rem;">${game.model_used}</span>
+                    ${game.prediction_time ? `<br><span style="font-size: 0.75rem; color: #64748b;">⏰ Made: ${game.prediction_time}</span>` : ''}
+                </div>
+            ` : ''}
+            
+            ${game.notes ? `
+                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.5rem; border: 1px solid #f59e0b;">
+                    <span style="font-size: 0.75rem; color: #92400e; font-weight: 600;">💡 Analysis:</span>
+                    <p style="font-size: 0.875rem; color: #92400e; margin: 0.25rem 0 0 0; font-style: italic;">${game.notes}</p>
+                </div>
+            ` : ''}
+            
             ${game.key_factors && game.key_factors.length > 0 ? `
-                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
-                    <strong style="color: #475569;">Key Factors:</strong>
-                    <ul style="margin: 0.5rem 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
-                        ${game.key_factors.map(factor => `<li>${factor}</li>`).join('')}
+                <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                    <strong style="color: #475569; font-size: 0.875rem;">📊 Key Factors:</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
+                        ${game.key_factors.map(factor => `<li style="margin-bottom: 0.25rem;">${factor}</li>`).join('')}
                     </ul>
                 </div>
             ` : ''}
