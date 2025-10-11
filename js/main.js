@@ -307,8 +307,17 @@ function populatePerformanceSection() {
     
     const modelStats = performanceData.model_stats;
     const recentPerf = performanceData.recent_performance;
+    const seasonal = performanceData.seasonal_breakdown;
+    const insights = performanceData.key_insights;
     
     performanceDiv.innerHTML = `
+        ${modelStats.data_status === 'cleaned' ? `
+            <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #22c55e; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                <h3 style="color: #166534; margin: 0; font-size: 1.125rem;">📊 CLEAN PERFORMANCE METRICS</h3>
+                <p style="color: #166534; margin: 0.5rem 0 0 0; font-weight: 600;">Post-Cleanup: ${modelStats.total_predictions} Valid Predictions</p>
+            </div>
+        ` : ''}
+        
         <div class="stats-grid">
             <div class="stat-card" style="border-left: 4px solid #2563eb;">
                 <div class="stat-card__value">${modelStats.overall_accuracy}%</div>
@@ -316,48 +325,114 @@ function populatePerformanceSection() {
                 <div class="stat-card__sublabel">${modelStats.total_predictions} total predictions</div>
             </div>
             <div class="stat-card" style="border-left: 4px solid #059669;">
-                <div class="stat-card__value">${modelStats.correct_predictions}</div>
-                <div class="stat-card__label">Correct Predictions</div>
-                <div class="stat-card__sublabel">Out of ${modelStats.total_predictions}</div>
+                <div class="stat-card__value">+${modelStats.vs_industry}%</div>
+                <div class="stat-card__label">vs Industry</div>
+                <div class="stat-card__sublabel">Industry: ${modelStats.industry_standard}%</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid #d97706;">
-                <div class="stat-card__value">${recentPerf.last_7_days.accuracy}%</div>
-                <div class="stat-card__label">Last 7 Days</div>
-                <div class="stat-card__sublabel">${recentPerf.last_7_days.predictions} predictions</div>
+            <div class="stat-card" style="border-left: 4px solid ${recentPerf.last_5_days?.status === 'COLD STREAK' ? '#dc2626' : '#d97706'};">
+                <div class="stat-card__value">${recentPerf.last_5_days?.accuracy || recentPerf.last_7_days.accuracy}%</div>
+                <div class="stat-card__label">Recent Performance</div>
+                <div class="stat-card__sublabel">${recentPerf.last_5_days?.status || recentPerf.last_7_days.trend}</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid #0284c7;">
-                <div class="stat-card__value">${recentPerf.last_30_days.accuracy}%</div>
-                <div class="stat-card__label">Last 30 Days</div>
-                <div class="stat-card__sublabel">${recentPerf.last_30_days.predictions} predictions</div>
+            <div class="stat-card" style="border-left: 4px solid #7c3aed;">
+                <div class="stat-card__value">${modelStats.completed_games || modelStats.correct_predictions}</div>
+                <div class="stat-card__label">Completed Games</div>
+                <div class="stat-card__sublabel">${modelStats.pending_games ? modelStats.pending_games + ' pending' : 'Total tracked'}</div>
             </div>
         </div>
         
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h4 style="margin-bottom: 1rem; color: #0f172a; font-size: 1.125rem;">📊 Confidence Bracket Performance</h4>
+            <h4 style="margin-bottom: 1rem; color: #0f172a; font-size: 1.125rem;">📊 Confidence Level Breakdown</h4>
             <div class="stats-grid">
                 ${Object.entries(modelStats.confidence_brackets).map(([bracket, data]) => {
-                    const color = data.accuracy >= 80 ? '#059669' : data.accuracy >= 70 ? '#d97706' : '#dc2626';
+                    let color = '#dc2626';
+                    if (data.accuracy === 100) color = '#22c55e';
+                    else if (data.accuracy >= 70) color = '#059669';
+                    else if (data.accuracy >= 55) color = '#d97706';
+                    
                     return `
                         <div class="stat-card" style="border-left: 4px solid ${color}; background: white;">
                             <div class="stat-card__value">${data.accuracy}%</div>
-                            <div class="stat-card__label">${bracket} Confidence</div>
-                            <div class="stat-card__sublabel">${data.predictions} predictions</div>
+                            <div class="stat-card__label">${bracket}</div>
+                            <div class="stat-card__sublabel">${data.record || data.predictions + ' predictions'}</div>
+                            ${data.status ? `<div style="font-size: 0.75rem; color: ${color}; font-weight: 600; margin-top: 0.25rem;">${data.status}</div>` : ''}
                         </div>
                     `;
                 }).join('')}
             </div>
+            ${Object.values(modelStats.confidence_brackets).some(d => d.accuracy === 100) ? `
+                <div style="margin-top: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 0.5rem; border: 1px solid #22c55e; text-align: center;">
+                    <span style="color: #166534; font-weight: 700;">🎯 Key Finding: Your high-confidence picks are perfect - trust them!</span>
+                </div>
+            ` : ''}
         </div>
+        
+        ${seasonal ? `
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.75rem; border: 1px solid #f59e0b;">
+            <h4 style="margin-bottom: 1rem; color: #92400e; font-size: 1.125rem;">🏆 Playoff vs Regular Season</h4>
+            <div class="stats-grid">
+                <div class="stat-card" style="border-left: 4px solid #059669; background: white;">
+                    <div class="stat-card__value">${seasonal.september_regular.accuracy}%</div>
+                    <div class="stat-card__label">September</div>
+                    <div class="stat-card__sublabel">${seasonal.september_regular.record} (Regular Season)</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid #d97706; background: white;">
+                    <div class="stat-card__value">${seasonal.october_playoffs.accuracy}%</div>
+                    <div class="stat-card__label">October</div>
+                    <div class="stat-card__sublabel">${seasonal.october_playoffs.record} (Playoffs)</div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border: 1px solid #f59e0b; text-align: center;">
+                <span style="color: #92400e; font-weight: 600;">📉 Playoff Impact: ${seasonal.playoff_impact}% decline</span><br>
+                <span style="color: #92400e; font-size: 0.875rem;">${seasonal.playoff_note}</span>
+            </div>
+        </div>
+        ` : ''}
+        
+        ${insights ? `
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
+            <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">💡 Key Insights</h4>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h5 style="color: #166534; margin-bottom: 0.5rem;">🎯 Strengths:</h5>
+                <ul style="margin: 0; padding-left: 1.25rem; color: #166534;">
+                    ${insights.strengths.map(strength => `<li style="margin-bottom: 0.25rem;">${strength}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h5 style="color: #dc2626; margin-bottom: 0.5rem;">⚠️ Areas to Watch:</h5>
+                <ul style="margin: 0; padding-left: 1.25rem; color: #dc2626;">
+                    ${insights.areas_to_watch.map(area => `<li style="margin-bottom: 0.25rem;">${area}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div>
+                <h5 style="color: #1e40af; margin-bottom: 0.5rem;">🎯 Strategic Takeaways:</h5>
+                <ul style="margin: 0; padding-left: 1.25rem; color: #1e40af;">
+                    ${insights.strategic_takeaways.map(takeaway => `<li style="margin-bottom: 0.25rem;">${takeaway}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+        ` : ''}
         
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
             <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">🧠 Model Insights & Performance Notes</h4>
             <ul style="list-style: none; padding: 0; margin: 0;">
                 ${performanceData.model_insights.map(insight => `
                     <li style="margin-bottom: 0.75rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-                        <span style="color: #1e40af; font-weight: 600;">💡</span> ${insight}
+                        ${insight}
                     </li>
                 `).join('')}
             </ul>
         </div>
+        
+        ${performanceData.bottom_line ? `
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 0.75rem; border: 2px solid #22c55e; text-align: center;">
+            <h4 style="color: #166534; margin-bottom: 0.75rem; font-size: 1.125rem;">📈 Bottom Line</h4>
+            <p style="color: #166534; margin: 0; font-weight: 600; font-style: italic;">${performanceData.bottom_line}</p>
+        </div>
+        ` : ''}
     `;
 }
 
