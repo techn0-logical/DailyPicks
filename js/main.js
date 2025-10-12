@@ -119,9 +119,9 @@ function populateYesterdaySection() {
         </div>
         
         ${summary.notable_outcomes.length > 0 ? `
-        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h4 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1rem;">📈 Notable Outcomes:</h4>
-            <ul style="margin: 0; padding-left: 1.25rem; color: #475569;">
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.75rem; border: 1px solid #374151;">
+            <h4 style="color: #f8fafc; margin-bottom: 0.75rem; font-size: 1rem;">📈 Notable Outcomes:</h4>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1;">
                 ${summary.notable_outcomes.map(outcome => `<li style="margin-bottom: 0.5rem;">${outcome}</li>`).join('')}
             </ul>
         </div>
@@ -198,9 +198,9 @@ function populateTodaySection() {
         ` : ''}
         
         ${todayData.prediction_notes && todayData.prediction_notes.length > 0 ? `
-        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h4 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1rem;">📊 Prediction Analysis:</h4>
-            <ul style="margin: 0; padding-left: 1.25rem; color: #475569;">
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.75rem; border: 1px solid #374151;">
+            <h4 style="color: #f8fafc; margin-bottom: 0.75rem; font-size: 1rem;">📊 Prediction Analysis:</h4>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1;">
                 ${todayData.prediction_notes.map(note => `<li style="margin-bottom: 0.5rem;">${note}</li>`).join('')}
             </ul>
         </div>
@@ -341,8 +341,8 @@ function populatePerformanceSection() {
             </div>
         </div>
         
-        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h4 style="margin-bottom: 1rem; color: #0f172a; font-size: 1.125rem;">📊 Confidence Level Breakdown</h4>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.75rem; border: 1px solid #374151;">
+            <h4 style="margin-bottom: 1rem; color: #f8fafc; font-size: 1.125rem;">📊 Confidence Level Breakdown</h4>
             <div class="stats-grid">
                 ${Object.entries(modelStats.confidence_brackets).map(([bracket, data]) => {
                     let color = '#dc2626';
@@ -351,7 +351,7 @@ function populatePerformanceSection() {
                     else if (data.accuracy >= 55) color = '#d97706';
                     
                     return `
-                        <div class="stat-card" style="border-left: 4px solid ${color}; background: white;">
+                        <div class="stat-card" style="border-left: 4px solid ${color}; background: #1e293b;">
                             <div class="stat-card__value">${data.accuracy}%</div>
                             <div class="stat-card__label">${bracket}</div>
                             <div class="stat-card__sublabel">${data.record || data.predictions + ' predictions'}</div>
@@ -371,18 +371,18 @@ function populatePerformanceSection() {
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.75rem; border: 1px solid #f59e0b;">
             <h4 style="margin-bottom: 1rem; color: #92400e; font-size: 1.125rem;">🏆 Playoff vs Regular Season</h4>
             <div class="stats-grid">
-                <div class="stat-card" style="border-left: 4px solid #059669; background: white;">
+                <div class="stat-card" style="border-left: 4px solid #059669; background: #1e293b;">
                     <div class="stat-card__value">${seasonal.september_regular.accuracy}%</div>
                     <div class="stat-card__label">September</div>
                     <div class="stat-card__sublabel">${seasonal.september_regular.record} (Regular Season)</div>
                 </div>
-                <div class="stat-card" style="border-left: 4px solid #d97706; background: white;">
+                <div class="stat-card" style="border-left: 4px solid #d97706; background: #1e293b;">
                     <div class="stat-card__value">${seasonal.october_playoffs.accuracy}%</div>
                     <div class="stat-card__label">October</div>
                     <div class="stat-card__sublabel">${seasonal.october_playoffs.record} (Playoffs)</div>
                 </div>
             </div>
-            <div style="margin-top: 1rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border: 1px solid #f59e0b; text-align: center;">
+            <div style="margin-top: 1rem; padding: 0.75rem; background: #1e293b; border-radius: 0.5rem; border: 1px solid #f59e0b; text-align: center;">
                 <span style="color: #92400e; font-weight: 600;">📉 Playoff Impact: ${seasonal.playoff_impact}% decline</span><br>
                 <span style="color: #92400e; font-size: 0.875rem;">${seasonal.playoff_note}</span>
             </div>
@@ -420,7 +420,7 @@ function populatePerformanceSection() {
             <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">🧠 Model Insights & Performance Notes</h4>
             <ul style="list-style: none; padding: 0; margin: 0;">
                 ${performanceData.model_insights.map(insight => `
-                    <li style="margin-bottom: 0.75rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                    <li style="margin-bottom: 0.75rem; padding: 0.75rem; background: #1e293b; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
                         ${insight}
                     </li>
                 `).join('')}
@@ -463,7 +463,7 @@ function createYesterdayGameCard(game) {
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">
                     <div>
                         <strong>🎯 Predicted:</strong><br>
                         <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
@@ -483,7 +483,7 @@ function createYesterdayGameCard(game) {
                 </div>
             </div>
             
-            <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #334155; border-radius: 0.5rem; border: 1px solid #475569;">
                 <div>
                     <span style="font-size: 0.875rem; color: #64748b;">Confidence:</span>
                     <span style="font-weight: 700; color: #0f172a; margin-left: 0.5rem;">${game.confidence}%</span>
@@ -581,7 +581,7 @@ function createTodayGameCard(game) {
                 <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
             </div>
             
-            <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <div class="game-card__prediction" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">
                 <div>
                     <strong style="color: #0f172a;">🎯 Predicted Winner:</strong><br>
                     <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem; display: inline-flex; align-items: center;">

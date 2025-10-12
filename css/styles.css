@@ -1,25 +1,25 @@
 /* CSS Custom Properties */
 :root {
-    /* Colors - Professional Sports Analytics Palette */
+    /* Colors - Professional Dark Sports Analytics Palette */
     --primary-color: #0f172a;  /* Deep slate for authority */
     --secondary-color: #1e293b; /* Rich dark blue */
-    --accent-color: #2563eb;   /* Vibrant blue for actions */
-    --success-color: #059669;  /* Professional green */
-    --warning-color: #d97706;  /* Orange for caution */
-    --danger-color: #dc2626;   /* Clear red for errors */
-    --info-color: #0284c7;     /* Light blue for info */
-    --background-color: #f8fafc; /* Subtle gray background */
-    --card-background: #ffffff;
-    --card-hover: #f1f5f9;     /* Subtle hover state */
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --border-hover: #cbd5e1;
-    --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --accent-color: #3b82f6;   /* Vibrant blue for actions */
+    --success-color: #22c55e;  /* Professional green */
+    --warning-color: #f59e0b;  /* Orange for caution */
+    --danger-color: #ef4444;   /* Clear red for errors */
+    --info-color: #06b6d4;     /* Light blue for info */
+    --background-color: #0f172a; /* Dark slate background */
+    --card-background: #1e293b;  /* Dark blue cards */
+    --card-hover: #334155;     /* Lighter blue hover state */
+    --text-primary: #f8fafc;   /* Light text */
+    --text-secondary: #cbd5e1; /* Medium light text */
+    --text-muted: #94a3b8;     /* Muted light text */
+    --border-color: #374151;   /* Dark borders */
+    --border-hover: #4b5563;   /* Lighter borders on hover */
+    --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
     
     /* Spacing */
     --space-xs: 0.25rem;
@@ -189,12 +189,13 @@ body {
     font-size: var(--font-size-2xl);
     font-weight: 700;
     padding: var(--space-lg) var(--space-xl);
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     border-bottom: 2px solid var(--border-color);
     margin: 0;
     position: relative;
     text-transform: uppercase;
     letter-spacing: 0.025em;
+    color: var(--text-primary);
 }
 
 .section--featured .section__title {
@@ -215,7 +216,7 @@ body {
 .predictions-summary,
 .preview-summary {
     padding: var(--space-lg) var(--space-xl);
-    background: #f8f9fa;
+    background: var(--primary-color);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -547,7 +548,7 @@ body {
 }
 
 .skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, var(--border-color) 25%, var(--border-hover) 50%, var(--border-color) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
 }
