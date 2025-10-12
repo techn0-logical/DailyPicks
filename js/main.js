@@ -703,7 +703,7 @@ function getTeamNameWithLogo(teamCode, size = '20px', isLightVersion = false) {
     const teamLogo = getTeamLogo(teamCode);
     
     if (teamLogo) {
-        const lightStyle = isLightVersion ? 'opacity: 0.9; filter: brightness(1.3) saturate(0.8) drop-shadow(0 0 6px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));' : '';
+        const lightStyle = isLightVersion ? 'opacity: 1.0; filter: brightness(1.6) saturate(1.1) contrast(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));' : '';
         return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain; ${lightStyle}"/>${teamName}`;
     }
     return teamName;
