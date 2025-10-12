@@ -454,9 +454,9 @@ function createYesterdayGameCard(game) {
             </div>
             
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
-                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
-                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
+                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
+                <span style="color: #cbd5e1; margin: 0 0.5rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">@</span> 
+                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
@@ -703,7 +703,7 @@ function getTeamNameWithLogo(teamCode, size = '20px', isLightVersion = false) {
     const teamLogo = getTeamLogo(teamCode);
     
     if (teamLogo) {
-        const lightStyle = isLightVersion ? 'opacity: 0.8; filter: brightness(1.2) saturate(0.7);' : '';
+        const lightStyle = isLightVersion ? 'opacity: 0.9; filter: brightness(1.3) saturate(0.8) drop-shadow(0 0 6px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));' : '';
         return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain; ${lightStyle}"/>${teamName}`;
     }
     return teamName;
