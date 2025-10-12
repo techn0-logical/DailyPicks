@@ -529,8 +529,8 @@ function createYesterdayGameCard(game) {
             
             <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #334155; border-radius: 0.5rem; border: 1px solid #475569;">
                 <div>
-                    <span style="font-size: 0.875rem; color: #64748b;">Confidence:</span>
-                    <span style="font-weight: 700; color: #0f172a; margin-left: 0.5rem;">${game.confidence}%</span>
+                    <span style="font-size: 0.875rem; color: #cbd5e1;">Confidence:</span>
+                    <span style="font-weight: 700; color: #f8fafc; margin-left: 0.5rem; text-shadow: 0 0 4px rgba(248, 250, 252, 0.5);">${game.confidence}%</span>
                     <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
                 </div>
             </div>
