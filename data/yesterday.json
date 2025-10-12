@@ -14,6 +14,7 @@
     "games": [
         {
             "id": "game_001",
+            "game_number": "813054",
             "home_team": "SEA",
             "away_team": "DET",
             "predicted_winner": "SEA",
@@ -29,7 +30,33 @@
                 "Home field advantage for Mariners"
             ],
             "result": "correct",
-            "notes": "Despite low confidence (52.3%), model correctly predicted Mariners victory in tight playoff game"
+            "notes": "Despite low confidence (52.3%), model correctly predicted Mariners victory in tight playoff game",
+            "game_details": {
+                "matchup": "Detroit Tigers @ Seattle Mariners",
+                "date": "October 10, 2025",
+                "final_score": "Detroit Tigers 2, Seattle Mariners 3 (15 innings)",
+                "game_highlights": {
+                    "duration": "15 innings (extra innings thriller)",
+                    "total_pitches": 472,
+                    "pitchers_used": "15 total (both teams combined)",
+                    "different_batters": 19,
+                    "winner": "Seattle Mariners (walk-off victory)"
+                },
+                "scoring_timeline": [
+                    "Inning 2: Seattle scores first (DET 0 - SEA 1)",
+                    "Inning 6: Detroit takes the lead with 2 runs (DET 2 - SEA 1)",
+                    "Inning 7: Seattle ties it up (DET 2 - SEA 2)",
+                    "Innings 8-14: Scoreless baseball for 8 straight innings",
+                    "Inning 15: Seattle wins on a walk-off (DET 2 - SEA 3)"
+                ],
+                "key_stats": [
+                    "This was a pitcher's duel with only 5 total runs scored",
+                    "Game remained scoreless through the first 5 innings",
+                    "8 consecutive scoreless innings from the 8th through 14th",
+                    "High pitch count (472) indicating excellent pitching and long at-bats",
+                    "15 pitchers used suggests both bullpens were heavily utilized"
+                ]
+            }
         }
     ],
     "performance_notes": [
