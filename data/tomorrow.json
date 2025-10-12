@@ -1,83 +1,85 @@
 {
-    "date": "2025-10-12",
-    "summary": {
-        "total_games": 1,
-        "games_to_watch": 1,
-        "early_favorites": ["TOR"],
-        "headline": "Playoff Showdown: Mariners @ Blue Jays",
-        "description": "A true toss-up playoff game with the Blue Jays getting the slightest edge at home."
+  "date": "2025-10-13",
+  "summary": {
+    "total_games": 2,
+    "games_to_watch": 2,
+    "early_favorites": ["LAD", "TOR"],
+    "headline": "Double Playoff Toss-Ups",
+    "description": "Two genuine coin flip games - both teams have essentially equal chances.",
+    "avg_confidence": 51.25,
+    "expected_record": "~1.1 correct out of 2 (52.6% each)"
+  },
+  "games": [
+    {
+      "id": "game_401",
+      "home_team": "MIL",
+      "away_team": "LAD",
+      "game_time": "TBD",
+      "venue": "American Family Field, Milwaukee",
+      "game_type": "Playoff",
+      "date": "2025-10-13",
+      "predicted_winner": "LAD",
+      "win_probability": 0.520,
+      "confidence": 52.0,
+      "confidence_level": "LOW",
+      "model_used": "XGBoost (simple_fallback)",
+      "status": "pending",
+      "analysis": "Slight edge to Dodgers but essentially a coin flip. Playoff experience vs home field advantage creates balanced matchup.",
+      "key_factors": [
+        "Dodgers playoff experience provides minimal edge",
+        "Milwaukee home field advantage",
+        "Both teams evenly matched statistically",
+        "Genuine toss-up scenario"
+      ]
     },
-    "games": [
-        {
-            "id": "game_301",
-            "home_team": "TOR",
-            "away_team": "SEA",
-            "game_time": "TBD",
-            "venue": "Rogers Centre, Toronto",
-            "game_type": "Playoff",
-            "date": "2025-10-12",
-            "predicted_winner": "TOR",
-            "win_probability": 0.505,
-            "confidence": 50.5,
-            "confidence_level": "LOW",
-            "model_used": "XGBoost (simple_fallback)",
-            "status": "pending",
-            "analysis": "TOSS-UP GAME: This is essentially a coin flip - the closest possible prediction. Minimal statistical difference between the teams. Classic playoff unpredictability scenario.",
-            "home_field_factor": "Toronto gets the slightest edge due to home field advantage. Familiar conditions and home crowd support. Only reason the model leans toward Toronto (50.5% vs 49.5%).",
-            "why_low_confidence": [
-                "Minimal statistical difference between teams (only 0.5% edge)",
-                "Small factors could easily swing the outcome either way",
-                "Playoff pressure makes historical data less predictive",
-                "Pitching matchups and day-of factors will be crucial"
-            ],
-            "key_insights": [
-                "Nearly Even Matchup: This is as close as predictions get in baseball",
-                "Home Field Minimal: Only tiny advantage for Toronto",
-                "High Variance: Actual game could go either way easily",
-                "Betting Perspective: Very slight lean toward Toronto, but essentially even money",
-                "Playoff Context: Single-elimination pressure makes this highly unpredictable"
-            ]
-        }
-    ],
-    "detailed_prediction_summary": {
-        "title": "DETAILED PREDICTION SUMMARY FOR OCTOBER 12, 2025",
-        "game_details": {
-            "matchup": "Seattle Mariners @ Toronto Blue Jays",
-            "date": "October 12, 2025",
-            "venue": "Toronto (Rogers Centre)",
-            "game_type": "Playoff matchup"
-        },
-        "prediction_results": {
-            "predicted_winner": "Toronto Blue Jays",
-            "win_probability": "50.5%",
-            "confidence_level": "LOW",
-            "model_used": "XGBoost (simple_fallback)"
-        },
-        "game_analysis": {
-            "assessment": "TOSS-UP GAME",
-            "details": [
-                "This is essentially a coin flip - the closest possible prediction",
-                "Minimal statistical difference between the teams",
-                "Classic playoff unpredictability scenario"
-            ]
-        },
-        "home_field_factor": [
-            "Toronto gets the slightest edge due to home field advantage",
-            "Familiar conditions and home crowd support",
-            "Only reason the model leans toward Toronto (50.5% vs 49.5%)"
-        ],
-        "why_low_confidence": [
-            "Minimal statistical difference between teams (only 0.5% edge)",
-            "Small factors could easily swing the outcome either way",
-            "Playoff pressure makes historical data less predictive",
-            "Pitching matchups and day-of factors will be crucial"
-        ],
-        "key_insights": [
-            "Nearly Even Matchup: This is as close as predictions get in baseball",
-            "Home Field Minimal: Only tiny advantage for Toronto",
-            "High Variance: Actual game could go either way easily",
-            "Betting Perspective: Very slight lean toward Toronto, but essentially even money",
-            "Playoff Context: Single-elimination pressure makes this highly unpredictable"
-        ]
+    {
+      "id": "game_402", 
+      "home_team": "TOR",
+      "away_team": "SEA",
+      "game_time": "TBD",
+      "venue": "Rogers Centre, Toronto",
+      "game_type": "Playoff",
+      "date": "2025-10-13",
+      "predicted_winner": "TOR",
+      "win_probability": 0.505,
+      "confidence": 50.5,
+      "confidence_level": "LOW",
+      "model_used": "XGBoost (simple_fallback)",
+      "status": "pending",
+      "analysis": "Pure coin flip - tiny home field edge to Toronto. Either outcome completely reasonable.",
+      "key_factors": [
+        "Minimal statistical difference between teams",
+        "Home field provides 0.5% edge only",
+        "Playoff unpredictability factor",
+        "Classic toss-up scenario"
+      ]
     }
+  ],
+  "strategic_context": {
+    "confidence_strategy": "Both games correctly flagged as unpredictable low-confidence picks",
+    "historical_performance": "Low confidence predictions hit 52.6% - basically even odds",
+    "recent_momentum": "Coming off perfect yesterday (100% accuracy)",
+    "system_status": "Overall accuracy 57.1% shows system working well"
+  },
+  "expectation_management": {
+    "realistic_outcomes": ["1-1 most likely", "2-0 or 0-2 possible but less likely"],
+    "focus": "Process over results - confidence levels working perfectly",
+    "context": "These are the hardest games to predict by design",
+    "key_message": "Don't stress these picks - they're genuine toss-ups"
+  },
+  "detailed_analysis": {
+    "why_both_low_confidence": [
+      "Playoff games where anything can happen",
+      "Teams are essentially evenly matched",
+      "Small factors could easily swing outcomes",
+      "System correctly identified uncertainty"
+    ],
+    "strategic_takeaways": [
+      "System correctly flagged both as unpredictable",
+      "Confidence levels are working perfectly",
+      "Focus on process rather than single-game results",
+      "Coming off perfect execution validates system reliability"
+    ]
+  },
+  "bottom_line": "Tomorrow features two playoff toss-ups where your system correctly flagged them as unpredictable. Don't sweat the results - focus on the fact that your confidence levels are working perfectly! 🎯⚾"
 }

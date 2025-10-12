@@ -293,6 +293,7 @@ const MLB_TEAMS = {
             "primary": "#005A9C",
             "secondary": "#EF3E42"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/119.svg",
         "abbreviations": ["LAD", "LA"]
     },
     "SDP": {
