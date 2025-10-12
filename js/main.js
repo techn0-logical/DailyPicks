@@ -445,7 +445,7 @@ function createYesterdayGameCard(game) {
     const confidenceLevel = getConfidenceLevel(game.confidence);
     
     return `
-        <div class="game-card" style="border-left: 6px solid ${isCorrect ? '#22c55e' : '#dc2626'}; ${isCorrect ? 'background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);' : ''}">
+        <div class="game-card" style="border-left: 6px solid ${isCorrect ? '#22c55e' : '#dc2626'}; ${isCorrect ? 'background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);' : 'background: linear-gradient(135deg, #1e293b 0%, #374151 100%);'}">
             <div class="game-card__header">
                 <span class="game-card__time">🏁 Final Game</span>
                 <span class="badge ${isCorrect ? 'badge--success' : 'badge--danger'}">
@@ -561,7 +561,7 @@ function createTodayGameCard(game) {
     return `
         <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}" 
              data-confidence="${game.confidence}" 
-             style="${isPending ? 'border-left: 6px solid #f59e0b; background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);' : ''}">
+             style="${isPending ? 'border-left: 6px solid #f59e0b; background: linear-gradient(135deg, #1e293b 0%, #374151 100%);' : ''}">
             
             <div class="game-card__header">
                 <span class="game-card__time">
