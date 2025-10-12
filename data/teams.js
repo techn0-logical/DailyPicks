@@ -38,6 +38,7 @@ const MLB_TEAMS = {
             "primary": "#134A8E",
             "secondary": "#1D2D5C"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/141.svg",
         "abbreviations": ["TOR", "TOR"]
     },
     "BAL": {

@@ -657,10 +657,12 @@ function createTomorrowGameCard(game) {
                 <span class="badge badge--${isPlayoff ? 'warning' : 'info'}">${isPlayoff ? 'Playoff' : 'Preview'}</span>
             </div>
             <div class="game-card__matchup">
-                ${awayTeam} @ ${homeTeam}
+                <span style="color: ${getTeamColors(game.away_team).primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
+                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
+                <span style="color: ${getTeamColors(game.home_team).primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
             </div>
             <div class="game-card__prediction">
-                <span>Predicted Winner: ${predictedWinner}</span>
+                <span style="display: inline-flex; align-items: center;">Predicted Winner: ${getTeamNameWithLogo(game.predicted_winner || game.early_prediction, '20px')}</span>
                 <span class="game-card__confidence">${confidence ? confidence + '%' : ''}</span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
