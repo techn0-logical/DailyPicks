@@ -327,9 +327,9 @@ function populatePerformanceSection() {
                 <div class="stat-card__sublabel">Industry: ${modelStats.industry_standard}%</div>
             </div>
             <div class="stat-card" style="border-left: 4px solid ${recentPerf.last_5_days?.status === 'COLD STREAK' ? '#dc2626' : '#d97706'};">
-                <div class="stat-card__value">${recentPerf.last_5_days?.accuracy || recentPerf.last_7_days.accuracy}%</div>
+                <div class="stat-card__value">${recentPerf.last_5_days?.accuracy || recentPerf.last_10_days?.accuracy || 'N/A'}%</div>
                 <div class="stat-card__label">Recent Performance</div>
-                <div class="stat-card__sublabel">${recentPerf.last_5_days?.status || recentPerf.last_7_days.trend}</div>
+                <div class="stat-card__sublabel">${recentPerf.last_5_days?.status || recentPerf.last_10_days?.status || 'N/A'}</div>
             </div>
             <div class="stat-card" style="border-left: 4px solid #7c3aed;">
                 <div class="stat-card__value">${modelStats.completed_games || modelStats.correct_predictions}</div>
