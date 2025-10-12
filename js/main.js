@@ -545,39 +545,27 @@ function createYesterdayGameCard(game) {
             ${game.game_details ? `
                 <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
                     <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🏟️ Game Details</h4>
-                    <div style="margin-bottom: 0.75rem;">
-                        <strong style="color: #f8fafc;">Game ${game.game_number || game.id}:</strong> <span style="color: #cbd5e1;">${game.game_details.matchup}</span><br>
-                        <strong style="color: #f8fafc;">Final:</strong> <span style="color: #cbd5e1;">${game.game_details.final_score}</span>
+                    <div style="margin-bottom: 0.75rem; color: #cbd5e1;">
+                        ${game.game_details.matchup}<br>
+                        <strong style="color: #f8fafc;">Final:</strong> ${game.game_details.final_score}
                     </div>
                     
                     ${game.game_details.game_highlights ? `
                         <div style="margin-bottom: 0.75rem;">
                             <strong style="color: #f8fafc;">Game Highlights:</strong>
-                            <ul style="margin: 0.25rem 0 0 1rem; color: #cbd5e1; font-size: 0.875rem;">
-                                <li>Duration: ${game.game_details.game_highlights.duration}</li>
-                                <li>Total Pitches: ${game.game_details.game_highlights.total_pitches || 'N/A'}</li>
-                                <li>Pitchers Used: ${game.game_details.game_highlights.pitchers_used || 'N/A'}</li>
-                                <li>Different Batters: ${game.game_details.game_highlights.different_batters || 'N/A'}</li>
-                                <li>Winner: ${game.game_details.game_highlights.winner}</li>
-                            </ul>
-                        </div>
-                    ` : ''}
-                    
-                    ${game.game_details.scoring_timeline ? `
-                        <div style="margin-bottom: 0.75rem;">
-                            <strong style="color: #f8fafc;">Scoring Timeline:</strong>
-                            <ul style="margin: 0.25rem 0 0 1rem; color: #cbd5e1; font-size: 0.875rem;">
-                                ${game.game_details.scoring_timeline.map(event => `<li style="margin-bottom: 0.25rem;">${event}</li>`).join('')}
-                            </ul>
+                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
+                                Duration: ${game.game_details.game_highlights.duration}<br>
+                                Winner: ${game.game_details.game_highlights.winner}
+                            </div>
                         </div>
                     ` : ''}
                     
                     ${game.game_details.key_stats ? `
                         <div>
                             <strong style="color: #f8fafc;">Key Stats:</strong>
-                            <ul style="margin: 0.25rem 0 0 1rem; color: #cbd5e1; font-size: 0.875rem;">
-                                ${game.game_details.key_stats.map(stat => `<li style="margin-bottom: 0.25rem;">${stat}</li>`).join('')}
-                            </ul>
+                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
+                                ${game.game_details.key_stats.map(stat => `${stat}`).join('<br>')}
+                            </div>
                         </div>
                     ` : ''}
                 </div>
