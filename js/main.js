@@ -460,22 +460,22 @@ function createYesterdayGameCard(game) {
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2);">
                     <div>
-                        <strong>🎯 Predicted:</strong><br>
+                        <strong style="color: #60a5fa;">🎯 Predicted:</strong><br>
                         <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
                             ${getTeamNameWithLogo(game.predicted_winner, '20px')}
                         </span>
                     </div>
                 </div>
                 
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, ${isCorrect ? '#f0fdf4' : '#fef2f2'} 0%, ${isCorrect ? '#dcfce7' : '#fecaca'} 100%);">
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2);">
                     <div>
-                        <strong>🏁 Actual:</strong><br>
+                        <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'};">🏁 Actual:</strong><br>
                         <span style="color: ${game.actual_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
                             ${getTeamNameWithLogo(game.actual_winner, '20px')}
                         </span><br>
-                        <small style="color: #64748b;">Score: ${game.actual_score.join('-')}</small>
+                        <small style="color: #cbd5e1;">Score: ${game.actual_score.join('-')}</small>
                     </div>
                 </div>
             </div>
