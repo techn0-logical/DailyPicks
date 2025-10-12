@@ -104,17 +104,14 @@ function populateYesterdaySection() {
             <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : '#2563eb'};">
                 <div class="stat-card__value">${summary.total_games}</div>
                 <div class="stat-card__label">Total Games</div>
-                <div class="stat-card__sublabel">Predictions Made</div>
             </div>
             <div class="stat-card" style="border-left: 4px solid #059669;">
                 <div class="stat-card__value">${summary.correct_predictions}</div>
                 <div class="stat-card__label">Correct Predictions</div>
-                <div class="stat-card__sublabel">Out of ${summary.total_games}</div>
             </div>
             <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : summary.accuracy >= 75 ? '#059669' : summary.accuracy >= 60 ? '#d97706' : '#dc2626'};">
                 <div class="stat-card__value">${summary.accuracy}%</div>
                 <div class="stat-card__label">Daily Accuracy</div>
-                <div class="stat-card__sublabel">${isPerfectDay ? '🎯 Perfect!' : summary.accuracy >= 75 ? 'Excellent' : summary.accuracy >= 60 ? 'Good' : 'Learning'}</div>
             </div>
         </div>
         
