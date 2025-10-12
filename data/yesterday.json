@@ -1,69 +1,62 @@
 {
-    "date": "2025-10-10",
+    "date": "2025-10-11",
     "summary": {
         "total_games": 1,
         "predictions_made": 1,
         "correct_predictions": 1,
         "accuracy": 100.0,
         "notable_outcomes": [
-            "Perfect Day! 100% accuracy in playoffs",
-            "Low confidence prediction proved correct",
-            "Close game (3-2) as model predicted"
+            "Perfect Medium-Confidence Performance!",
+            "Milwaukee Brewers won 3-1 as predicted",
+            "System validation - medium confidence proving reliable",
+            "Momentum boost after recent cold streak"
         ]
     },
     "games": [
         {
-            "id": "game_001",
-            "game_number": "813054",
-            "home_team": "SEA",
-            "away_team": "DET",
-            "predicted_winner": "SEA",
-            "actual_winner": "SEA",
-            "actual_score": [2, 3],
-            "confidence": 52.3,
-            "win_probability": 0.523,
+            "id": "game_101",
+            "game_number": "813055",
+            "home_team": "MIL",
+            "away_team": "CHC",
+            "predicted_winner": "MIL",
+            "actual_winner": "MIL",
+            "actual_score": [1, 3],
+            "confidence": 55.6,
+            "confidence_level": "MEDIUM",
+            "win_probability": 0.556,
             "model_used": "XGBoost (simple_fallback)",
-            "prediction_time": "October 10, 2025 at 2:09 PM",
+            "prediction_time": "October 11, 2025 at 10:56 AM",
             "key_factors": [
-                "Playoff unpredictability factor",
-                "Close matchup expected",
-                "Home field advantage for Mariners"
+                "Home field advantage for Brewers",
+                "Competitive but not too close matchup expected",
+                "Higher confidence than previous prediction (55.6% vs 52.3%)"
             ],
             "result": "correct",
-            "notes": "Despite low confidence (52.3%), model correctly predicted Mariners victory in tight playoff game",
+            "notes": "Perfect execution on medium-confidence pick validates system reliability",
             "game_details": {
-                "matchup": "Detroit Tigers @ Seattle Mariners",
-                "date": "October 10, 2025",
-                "final_score": "Detroit Tigers 2, Seattle Mariners 3 (15 innings)",
+                "matchup": "Chicago Cubs @ Milwaukee Brewers",
+                "date": "October 11, 2025",
+                "final_score": "Chicago Cubs 1, Milwaukee Brewers 3",
                 "game_highlights": {
-                    "duration": "15 innings (extra innings thriller)",
-                    "total_pitches": 472,
-                    "pitchers_used": "15 total (both teams combined)",
-                    "different_batters": 19,
-                    "winner": "Seattle Mariners (walk-off victory)"
+                    "duration": "9 innings (regulation)",
+                    "winner": "Milwaukee Brewers (convincing victory)",
+                    "prediction_validation": "Medium confidence prediction proved accurate"
                 },
-                "scoring_timeline": [
-                    "Inning 2: Seattle scores first (DET 0 - SEA 1)",
-                    "Inning 6: Detroit takes the lead with 2 runs (DET 2 - SEA 1)",
-                    "Inning 7: Seattle ties it up (DET 2 - SEA 2)",
-                    "Innings 8-14: Scoreless baseball for 8 straight innings",
-                    "Inning 15: Seattle wins on a walk-off (DET 2 - SEA 3)"
-                ],
+                "scoring_summary": "Cubs managed 1 run, Brewers secured comfortable 3-1 victory",
                 "key_stats": [
-                    "This was a pitcher's duel with only 5 total runs scored",
-                    "Game remained scoreless through the first 5 innings",
-                    "8 consecutive scoreless innings from the 8th through 14th",
-                    "High pitch count (472) indicating excellent pitching and long at-bats",
-                    "15 pitchers used suggests both bullpens were heavily utilized"
+                    "Clean 3-1 victory for Milwaukee as predicted",
+                    "Medium confidence (55.6%) prediction executed perfectly",
+                    "Validates system's reliability in 55-59% confidence range",
+                    "Breaks recent cold streak with perfect daily accuracy"
                 ]
             }
         }
     ],
     "performance_notes": [
-        "Despite being a low confidence prediction (52.3%), the model was correct",
-        "This was a close game (3-2), which explains the low confidence",
-        "Perfect example of playoff unpredictability - even 'uncertain' predictions can be right",
-        "Your 56.5% overall accuracy got a nice boost from this correct prediction"
+        "Perfect execution on medium-confidence pick (55.6%)",
+        "System validation - medium confidence proving reliable at 58.6% overall",
+        "Momentum shift - broke recent cold streak pattern",
+        "Your 57.1% overall accuracy (+4.1% above industry) got a nice boost"
     ],
-    "celebration_message": "Excellent result! A 100% day is always satisfying, especially in the playoffs where games are so unpredictable. 🏆⚾"
+    "celebration_message": "Excellent medium-confidence execution! Perfect daily accuracy provides momentum and validates system reliability. 🎯�⚾"
 }
