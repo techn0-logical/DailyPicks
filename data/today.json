@@ -22,7 +22,6 @@
             "away_team": "CHC",
             "game_time": "TBD",
             "predicted_winner": "MIL",
-            "predicted_score": [4, 5],
             "confidence": 55.6,
             "win_probability": 0.556,
             "model_used": "XGBoost (simple_fallback)",

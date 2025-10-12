@@ -576,16 +576,16 @@ function createTodayGameCard(game) {
             </div>
             
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}; font-weight: 700;">${awayTeam}</span> 
-                <span style="color: #64748b;">@</span> 
-                <span style="color: ${homeTeamColors.primary}; font-weight: 700;">${homeTeam}</span>
+                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
+                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
+                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
             </div>
             
             <div class="game-card__prediction" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
                 <div>
                     <strong style="color: #0f172a;">🎯 Predicted Winner:</strong><br>
-                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem;">
-                        ${predictedWinner}
+                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem; display: inline-flex; align-items: center;">
+                        ${getTeamNameWithLogo(game.predicted_winner, '20px')}
                     </span>
                 </div>
                 <div class="game-card__confidence">${game.confidence}%</div>
@@ -624,17 +624,6 @@ function createTodayGameCard(game) {
                 <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 0.5rem; border: 1px solid #22c55e;">
                     <span style="font-size: 0.75rem; color: #166534; font-weight: 600;">💡 Analysis:</span>
                     <p style="font-size: 0.875rem; color: #166534; margin: 0.25rem 0 0 0; font-style: italic;">${game.analysis}</p>
-                </div>
-            ` : ''}
-            
-            ${game.predicted_score ? `
-                <div style="margin-bottom: 1rem; padding: 0.5rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e2e8f0; text-align: center;">
-                    <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">📊 Predicted Final Score:</span>
-                    <div style="font-size: 1.125rem; font-weight: 700; color: #0f172a; margin-top: 0.25rem;">
-                        <span style="color: ${awayTeamColors.primary};">${awayTeam}</span> 
-                        <span style="color: #64748b;">${game.predicted_score[0]} - ${game.predicted_score[1]}</span> 
-                        <span style="color: ${homeTeamColors.primary};">${homeTeam}</span>
-                    </div>
                 </div>
             ` : ''}
             

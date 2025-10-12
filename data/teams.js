@@ -218,6 +218,7 @@ const MLB_TEAMS = {
             "primary": "#0E3386",
             "secondary": "#CC3433"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/112.svg",
         "abbreviations": ["CHC", "CHI"]
     },
     "CIN": {
@@ -238,6 +239,7 @@ const MLB_TEAMS = {
             "primary": "#0A2351",
             "secondary": "#B6922E"
         },
+        "logo": "https://www.mlbstatic.com/team-logos/158.svg",
         "abbreviations": ["MIL", "MIL"]
     },
     "PIT": {
