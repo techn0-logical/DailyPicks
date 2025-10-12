@@ -463,7 +463,7 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2);">
                     <div>
                         <strong style="color: #60a5fa;">🎯 Predicted:</strong><br>
-                        <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center;">
                             ${getTeamNameWithLogo(game.predicted_winner, '20px')}
                         </span>
                     </div>
@@ -472,7 +472,7 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2);">
                     <div>
                         <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'};">🏁 Actual:</strong><br>
-                        <span style="color: ${game.actual_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center;">
                             ${getTeamNameWithLogo(game.actual_winner, '20px')}
                         </span><br>
                         <small style="color: #cbd5e1;">Score: ${game.actual_score.join('-')}</small>
