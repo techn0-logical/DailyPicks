@@ -464,7 +464,7 @@ function createYesterdayGameCard(game) {
                     <div>
                         <strong style="color: #60a5fa;">🎯 Predicted:</strong><br>
                         <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center;">
-                            ${getTeamNameWithLogo(game.predicted_winner, '20px')}
+                            ${getTeamNameWithLogo(game.predicted_winner, '20px', true)}
                         </span>
                     </div>
                 </div>
@@ -473,7 +473,7 @@ function createYesterdayGameCard(game) {
                     <div>
                         <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'};">🏁 Actual:</strong><br>
                         <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center;">
-                            ${getTeamNameWithLogo(game.actual_winner, '20px')}
+                            ${getTeamNameWithLogo(game.actual_winner, '20px', true)}
                         </span><br>
                         <small style="color: #cbd5e1;">Score: ${game.actual_score.join('-')}</small>
                     </div>
@@ -698,12 +698,13 @@ function getTeamLogo(teamCode) {
     return null; // No logo available
 }
 
-function getTeamNameWithLogo(teamCode, size = '20px') {
+function getTeamNameWithLogo(teamCode, size = '20px', isLightVersion = false) {
     const teamName = getTeamName(teamCode);
     const teamLogo = getTeamLogo(teamCode);
     
     if (teamLogo) {
-        return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain;"/>${teamName}`;
+        const lightStyle = isLightVersion ? 'opacity: 0.8; filter: brightness(1.2) saturate(0.7);' : '';
+        return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain; ${lightStyle}"/>${teamName}`;
     }
     return teamName;
 }
