@@ -14,39 +14,72 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function initializeApp() {
     try {
+        console.log('Starting DailyPicks initialization...');
+        
         // Load all data files
         await loadAllData();
+        console.log('✅ Data loading completed');
         
         // Update header with current information
         updateHeader();
+        console.log('✅ Header updated');
         
         // Populate all sections
         populateYesterdaySection();
-        populateTodaySection();
-        populateTomorrowSection();
-        populatePerformanceSection();
+        console.log('✅ Yesterday section populated');
         
-        console.log('DailyPicks loaded successfully!');
+        populateTodaySection();
+        console.log('✅ Today section populated');
+        
+        populateTomorrowSection();
+        console.log('✅ Tomorrow section populated');
+        
+        populatePerformanceSection();
+        console.log('✅ Performance section populated');
+        
+        console.log('🎉 DailyPicks loaded successfully!');
     } catch (error) {
-        console.error('Error initializing app:', error);
-        showErrorMessage('Failed to load data. Please try refreshing the page.');
+        console.error('❌ Error initializing app:', error);
+        console.error('Error details:', error.stack);
+        showErrorMessage(`Failed to load data: ${error.message}. Please check the console and try refreshing the page.`);
     }
 }
 
 // Load all JSON data files
 async function loadAllData() {
     try {
+        console.log('🔄 Loading teams data...');
         // Load teams data (JavaScript file)
         if (typeof MLB_TEAMS !== 'undefined') {
             teamsData = MLB_TEAMS;
+            console.log('✅ Teams data loaded:', Object.keys(teamsData).length, 'teams');
+        } else {
+            console.warn('⚠️ MLB_TEAMS not defined - teams.js may not have loaded');
         }
         
+        console.log('🔄 Loading JSON data files...');
         // Load JSON data files
         const [yesterday, today, tomorrow, performance] = await Promise.all([
-            fetch('data/yesterday.json').then(response => response.json()),
-            fetch('data/today.json').then(response => response.json()),
-            fetch('data/tomorrow.json').then(response => response.json()),
-            fetch('data/performance.json').then(response => response.json())
+            fetch('data/yesterday.json').then(response => {
+                console.log('📥 yesterday.json response:', response.status);
+                if (!response.ok) throw new Error(`yesterday.json: ${response.status} ${response.statusText}`);
+                return response.json();
+            }),
+            fetch('data/today.json').then(response => {
+                console.log('📥 today.json response:', response.status);
+                if (!response.ok) throw new Error(`today.json: ${response.status} ${response.statusText}`);
+                return response.json();
+            }),
+            fetch('data/tomorrow.json').then(response => {
+                console.log('📥 tomorrow.json response:', response.status);
+                if (!response.ok) throw new Error(`tomorrow.json: ${response.status} ${response.statusText}`);
+                return response.json();
+            }),
+            fetch('data/performance.json').then(response => {
+                console.log('📥 performance.json response:', response.status);
+                if (!response.ok) throw new Error(`performance.json: ${response.status} ${response.statusText}`);
+                return response.json();
+            })
         ]);
         
         yesterdayData = yesterday;
@@ -54,8 +87,16 @@ async function loadAllData() {
         tomorrowData = tomorrow;
         performanceData = performance;
         
+        console.log('✅ All JSON data loaded successfully');
+        console.log('📊 Data summary:');
+        console.log('  - Yesterday games:', yesterdayData.games?.length || 0);
+        console.log('  - Today games:', todayData.games?.length || 0);
+        console.log('  - Tomorrow games:', tomorrowData.games?.length || 0);
+        console.log('  - Performance accuracy:', performanceData.model_stats?.overall_accuracy || 'N/A');
+        
     } catch (error) {
-        console.error('Error loading data:', error);
+        console.error('❌ Error loading data:', error);
+        console.error('Error details:', error.stack);
         throw error;
     }
 }
@@ -390,37 +431,43 @@ function populatePerformanceSection() {
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
             <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">💡 Key Insights</h4>
             
+            ${insights.strengths && Array.isArray(insights.strengths) ? `
             <div style="margin-bottom: 1.5rem;">
                 <h5 style="color: #166534; margin-bottom: 0.5rem;">🎯 Strengths:</h5>
                 <ul style="margin: 0; padding-left: 1.25rem; color: #166534;">
                     ${insights.strengths.map(strength => `<li style="margin-bottom: 0.25rem;">${strength}</li>`).join('')}
                 </ul>
             </div>
+            ` : ''}
             
+            ${insights.areas_to_watch && Array.isArray(insights.areas_to_watch) ? `
             <div style="margin-bottom: 1.5rem;">
                 <h5 style="color: #dc2626; margin-bottom: 0.5rem;">⚠️ Areas to Watch:</h5>
                 <ul style="margin: 0; padding-left: 1.25rem; color: #dc2626;">
                     ${insights.areas_to_watch.map(area => `<li style="margin-bottom: 0.25rem;">${area}</li>`).join('')}
                 </ul>
             </div>
+            ` : ''}
             
+            ${insights.strategic_takeaways && Array.isArray(insights.strategic_takeaways) ? `
             <div>
                 <h5 style="color: #1e40af; margin-bottom: 0.5rem;">🎯 Strategic Takeaways:</h5>
                 <ul style="margin: 0; padding-left: 1.25rem; color: #1e40af;">
                     ${insights.strategic_takeaways.map(takeaway => `<li style="margin-bottom: 0.25rem;">${takeaway}</li>`).join('')}
                 </ul>
             </div>
+            ` : ''}
         </div>
         ` : ''}
         
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6;">
             <h4 style="margin-bottom: 1rem; color: #1e40af; font-size: 1.125rem;">🧠 Model Insights & Performance Notes</h4>
             <ul style="list-style: none; padding: 0; margin: 0;">
-                ${performanceData.model_insights.map(insight => `
+                ${performanceData.model_insights && Array.isArray(performanceData.model_insights) ? performanceData.model_insights.map(insight => `
                     <li style="margin-bottom: 0.75rem; padding: 0.75rem; background: #1e293b; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
                         ${insight}
                     </li>
-                `).join('')}
+                `).join('') : '<li style="color: #64748b;">No insights available</li>'}
             </ul>
         </div>
         

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - DailyPicks Data Loading</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1e293b; color: #f8fafc; }
+        .test { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .pass { background: #166534; border: 1px solid #22c55e; }
+        .fail { background: #991b1b; border: 1px solid #ef4444; }
+        .pending { background: #92400e; border: 1px solid #f59e0b; }
+    </style>
+</head>
+<body>
+    <h1>🔧 DailyPicks Data Loading Debug</h1>
+    <div id="results"></div>
+    
+    <script src="data/teams.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(message, status) {
+            const div = document.createElement('div');
+            div.className = `test ${status}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+        
+        // Test 1: Check teams.js
+        addResult('Testing teams.js...', 'pending');
+        try {
+            if (typeof MLB_TEAMS !== 'undefined') {
+                addResult('✅ teams.js loaded successfully - ' + Object.keys(MLB_TEAMS).length + ' teams available', 'pass');
+            } else {
+                addResult('❌ MLB_TEAMS not defined in teams.js', 'fail');
+            }
+        } catch (error) {
+            addResult('❌ Error with teams.js: ' + error.message, 'fail');
+        }
+        
+        // Test 2-5: Check each JSON file
+        const jsonFiles = ['yesterday.json', 'today.json', 'tomorrow.json', 'performance.json'];
+        
+        jsonFiles.forEach(file => {
+            addResult(`Testing data/${file}...`, 'pending');
+            
+            fetch(`data/${file}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    addResult(`✅ data/${file} loaded successfully`, 'pass');
+                    if (file === 'performance.json') {
+                        // Extra check for performance.json structure
+                        if (data.model_stats && data.recent_performance) {
+                            addResult(`✅ performance.json has expected structure`, 'pass');
+                        } else {
+                            addResult(`⚠️ performance.json missing expected structure`, 'fail');
+                        }
+                    }
+                })
+                .catch(error => {
+                    addResult(`❌ Error loading data/${file}: ${error.message}`, 'fail');
+                });
+        });
+        
+        // Test 6: Simulate main.js data loading
+        setTimeout(() => {
+            addResult('Testing complete data loading (like main.js)...', 'pending');
+            
+            Promise.all([
+                fetch('data/yesterday.json').then(r => r.json()),
+                fetch('data/today.json').then(r => r.json()),
+                fetch('data/tomorrow.json').then(r => r.json()),
+                fetch('data/performance.json').then(r => r.json())
+            ])
+            .then(([yesterday, today, tomorrow, performance]) => {
+                addResult('✅ All JSON files loaded successfully in batch', 'pass');
+                
+                // Check specific structure that caused issues
+                if (performance.recent_performance) {
+                    if (performance.recent_performance.last_5_days) {
+                        addResult('✅ performance.json has last_5_days data', 'pass');
+                    } else {
+                        addResult('❌ performance.json missing last_5_days data', 'fail');
+                    }
+                    
+                    if (performance.recent_performance.last_10_days) {
+                        addResult('✅ performance.json has last_10_days data', 'pass');
+                    } else {
+                        addResult('❌ performance.json missing last_10_days data', 'fail');
+                    }
+                } else {
+                    addResult('❌ performance.json missing recent_performance section', 'fail');
+                }
+            })
+            .catch(error => {
+                addResult(`❌ Batch data loading failed: ${error.message}`, 'fail');
+            });
+        }, 2000);
+    </script>
+</body>
+</html>
