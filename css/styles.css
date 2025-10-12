@@ -280,11 +280,11 @@ body {
 
 .game-card__time {
     font-size: var(--font-size-sm);
-    color: var(--text-muted);
+    color: var(--text-primary);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background: var(--background-color);
+    background: var(--secondary-color);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--border-radius);
 }
