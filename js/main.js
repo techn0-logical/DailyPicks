@@ -101,10 +101,9 @@ async function loadAllData() {
     }
 }
 
-// Update header with current date and last updated info
+// Update header with current date
 function updateHeader() {
     const currentDate = document.getElementById('current-date');
-    const lastUpdated = document.getElementById('last-updated');
     
     if (currentDate) {
         const today = new Date();
@@ -114,11 +113,6 @@ function updateHeader() {
             month: 'long',
             day: 'numeric'
         });
-    }
-    
-    if (lastUpdated && performanceData.model_stats) {
-        const updateTime = new Date(performanceData.model_stats.last_updated);
-        lastUpdated.textContent = `Last updated: ${updateTime.toLocaleDateString()} ${updateTime.toLocaleTimeString()}`;
     }
 }
 
