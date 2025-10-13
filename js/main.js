@@ -543,8 +543,8 @@ function createYesterdayGameCard(game) {
             ` : ''}
             
             ${game.game_details ? `
-                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
-                    <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🏟️ Game Details</h4>
+                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b; box-shadow: 0 0 20px rgba(96, 165, 250, 0.15), 0 0 40px rgba(96, 165, 250, 0.08), inset 0 0 30px rgba(96, 165, 250, 0.05);">
+                    <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 8px rgba(96, 165, 250, 0.6), 0 0 16px rgba(96, 165, 250, 0.4);">🏟️ Game Details</h4>
                     <div style="margin-bottom: 0.75rem; color: #cbd5e1;">
                         ${getTeamNameWithLogo(game.away_team, '20px', true)} @ ${getTeamNameWithLogo(game.home_team, '20px', true)}<br>
                         <strong style="color: #f8fafc;">Final:</strong> ${getTeamNameWithLogo(game.actual_winner, '18px', true)} ${game.actual_score[1]}-${game.actual_score[0]}
@@ -552,7 +552,7 @@ function createYesterdayGameCard(game) {
                     
                     ${game.game_details.game_highlights ? `
                         <div style="margin-bottom: 0.75rem;">
-                            <strong style="color: #f8fafc;">Game Highlights:</strong>
+                            <strong style="color: #f8fafc; text-shadow: 0 0 4px rgba(248, 250, 252, 0.4);">Game Highlights:</strong>
                             <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
                                 Duration: ${game.game_details.game_highlights.duration}
                             </div>
@@ -561,7 +561,7 @@ function createYesterdayGameCard(game) {
                     
                     ${game.game_details.key_stats ? `
                         <div>
-                            <strong style="color: #f8fafc;">Key Stats:</strong>
+                            <strong style="color: #f8fafc; text-shadow: 0 0 4px rgba(248, 250, 252, 0.4);">Key Stats:</strong>
                             <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
                                 ${game.game_details.key_stats.map(stat => `${stat}`).join('<br>')}
                             </div>
