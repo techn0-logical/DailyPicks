@@ -180,22 +180,6 @@ function populateTodaySection() {
                 <div class="stat-card__sublabel">Made Today</div>
             </div>
             
-            ${summary.pending_games !== undefined ? `
-                <div class="stat-card" style="border-left: 4px solid #f59e0b;">
-                    <div class="stat-card__value">${summary.pending_games}</div>
-                    <div class="stat-card__label">Pending Games</div>
-                    <div class="stat-card__sublabel">⏳ Awaiting Results</div>
-                </div>
-            ` : ''}
-            
-            ${summary.completed_games !== undefined ? `
-                <div class="stat-card" style="border-left: 4px solid #059669;">
-                    <div class="stat-card__value">${summary.completed_games}</div>
-                    <div class="stat-card__label">Completed Games</div>
-                    <div class="stat-card__sublabel">Results Available</div>
-                </div>
-            ` : ''}
-            
             <div class="stat-card" style="border-left: 4px solid #7c3aed;">
                 <div class="stat-card__value">${summary.avg_confidence}%</div>
                 <div class="stat-card__label">Avg Confidence</div>
