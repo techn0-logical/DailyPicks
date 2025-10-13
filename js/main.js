@@ -129,20 +129,12 @@ function populateYesterdaySection() {
     
     if (!summaryDiv || !gamesDiv || !yesterdayData) return;
     
-    // Create summary with celebration for perfect days
+    // Create summary
     const summary = yesterdayData.summary;
-    const isPerfectDay = summary.accuracy === 100.0;
     
     summaryDiv.innerHTML = `
-        ${isPerfectDay ? `
-            <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #22c55e; border-radius: 0.75rem; margin-bottom: 1.5rem;">
-                <h3 style="color: #166534; margin: 0; font-size: 1.25rem;">🎉 PERFECT DAY! 🏆</h3>
-                <p style="color: #166534; margin: 0.5rem 0 0 0; font-weight: 600;">100% Accuracy Achievement Unlocked!</p>
-            </div>
-        ` : ''}
-        
         <div class="stats-grid">
-            <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : '#2563eb'};">
+            <div class="stat-card" style="border-left: 4px solid #2563eb;">
                 <div class="stat-card__value">${summary.total_games}</div>
                 <div class="stat-card__label">Total Games</div>
             </div>
@@ -150,7 +142,7 @@ function populateYesterdaySection() {
                 <div class="stat-card__value">${summary.correct_predictions}</div>
                 <div class="stat-card__label">Correct Predictions</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid ${isPerfectDay ? '#22c55e' : summary.accuracy >= 75 ? '#059669' : summary.accuracy >= 60 ? '#d97706' : '#dc2626'};">
+            <div class="stat-card" style="border-left: 4px solid ${summary.accuracy >= 75 ? '#059669' : summary.accuracy >= 60 ? '#d97706' : '#dc2626'};">
                 <div class="stat-card__value">${summary.accuracy}%</div>
                 <div class="stat-card__label">Daily Accuracy</div>
             </div>
