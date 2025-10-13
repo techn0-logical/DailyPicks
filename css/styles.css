@@ -236,26 +236,10 @@ body {
     overflow: hidden;
 }
 
-.game-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--border-color);
-    transition: all 0.3s ease;
-}
-
 .game-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
     border-color: var(--border-hover);
-}
-
-.game-card:hover::before {
-    background: var(--accent-color);
-    width: 6px;
 }
 
 .game-card--featured {
