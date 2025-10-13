@@ -169,18 +169,10 @@ function populateTodaySection() {
     
     if (!summaryDiv || !gamesDiv || !todayData) return;
     
-    // Create summary with pending game status
+    // Create summary
     const summary = todayData.summary;
-    const hasPendingGames = summary.pending_games > 0;
     
     summaryDiv.innerHTML = `
-        ${hasPendingGames ? `
-            <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 0.75rem; margin-bottom: 1.5rem;">
-                <h3 style="color: #92400e; margin: 0; font-size: 1.25rem;">⏳ PREDICTIONS ACTIVE</h3>
-                <p style="color: #92400e; margin: 0.5rem 0 0 0; font-weight: 600;">${summary.status}</p>
-            </div>
-        ` : ''}
-        
         <div class="stats-grid">
             <div class="stat-card" style="border-left: 4px solid #2563eb;">
                 <div class="stat-card__value">${summary.total_games}</div>
