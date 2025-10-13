@@ -1,57 +1,37 @@
 {
-    "date": "2025-10-12",
+    "date": "2025-10-13",
     "summary": {
-        "total_games": 1,
-        "pending_games": 1,
+        "total_games": 2,
+        "pending_games": 2,
         "completed_games": 0,
-        "top_picks": [
-            {
-                "game_id": "game_301",
-                "confidence": 50.5,
-                "pick": "TOR",
-                "reasoning": "Essentially a coin flip - tiny edge to Toronto due to home field advantage"
-            }
-        ],
-        "avg_confidence": 50.5,
-        "status": "Playoff Game 1 - Genuine Toss-Up Scenario"
+        "avg_confidence": 51.25,
+        "status": "Two active predictions - Both are low confidence (genuine toss-ups)"
     },
     "games": [
         {
-            "id": "game_301",
-            "home_team": "TOR",
+            "id": "game_401",
+            "home_team": "MIL",
+            "away_team": "LAD",
+            "predicted_winner": "LAD",
+            "confidence": 52.0,
+            "status": "pending",
+            "analysis": "LAD @ MIL: Predicting Dodgers 52.0% 💡"
+        },
+        {
+            "id": "game_402",
+            "home_team": "TOR", 
             "away_team": "SEA",
-            "game_time": "TBD",
             "predicted_winner": "TOR",
             "confidence": 50.5,
-            "confidence_level": "LOW",
-            "win_probability": 0.505,
-            "model_used": "XGBoost (simple_fallback)",
-            "prediction_time": "October 12, 2025 at 9:00 AM",
-            "key_factors": [
-                "Playoff Series Game 1 between evenly matched teams",
-                "Home field provides tiny 0.5% edge to Toronto",
-                "Genuine coin flip scenario - either outcome reasonable",
-                "Playoff variance means close games can go either way"
-            ],
-            "recommendation": "Low Pick",
             "status": "pending",
-            "game_status": "⏳ PLAYOFF GAME 1",
-            "actual_result": "TBD (playoff game pending)",
-            "analysis": "Essentially a coin flip with minimal Toronto edge due to home field. 50.5% reflects genuine uncertainty in evenly matched playoff teams."
+            "analysis": "SEA @ TOR: Predicting Blue Jays 50.5% 💡"
         }
     ],
     "prediction_notes": [
-        "Coming off perfect yesterday (100% accuracy) with medium confidence success",
-        "Today's low confidence (50.5%) appropriate for genuine toss-up scenario",
-        "System status: 57.1% overall accuracy (+4.1% vs industry standard)",
-        "Don't be surprised by either outcome - this is a genuine coin flip",
-        "Focus on process over single-game results in playoff variance"
-    ],
-    "strategic_context": {
-        "system_status": "Coming off perfect medium-confidence execution yesterday",
-        "overall_accuracy": "57.1% (+4.1% above industry standard)",
-        "confidence_reliability": "Data cleaned - confidence levels now accurate",
-        "low_confidence_context": "Performing at 52.6% - appropriate for uncertain games"
-    },
-    "pending_message": "Playoff toss-up game! Either outcome validates the system - 50.5% reflects genuine uncertainty. �️⚾"
+        "Two active predictions - both are low confidence (genuine toss-ups)",
+        "LAD @ MIL: Predicting Dodgers 52.0% 💡",
+        "SEA @ TOR: Predicting Blue Jays 50.5% 💡",
+        "System status: 56.3% overall accuracy (+3.3% vs industry standard)",
+        "Both are coin flips - competitive games expected"
+    ]
 }
