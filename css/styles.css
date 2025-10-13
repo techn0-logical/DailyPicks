@@ -531,6 +531,12 @@ body {
         font-size: var(--font-size-xl);
         padding: var(--space-md) var(--space-lg);
     }
+    
+    /* Make prediction boxes stack vertically on very small screens */
+    .game-card .prediction-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
 }
 
 /* Loading States */
