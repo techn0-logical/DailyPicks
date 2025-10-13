@@ -478,7 +478,7 @@ function createYesterdayGameCard(game) {
     const confidenceLevel = getConfidenceLevel(game.confidence);
     
     return `
-        <div class="game-card" style="border-left: 6px solid ${isCorrect ? '#22c55e' : '#dc2626'}; ${isCorrect ? 'background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);' : 'background: linear-gradient(135deg, #1e293b 0%, #374151 100%);'}">
+        <div class="game-card" style="${isCorrect ? 'background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);' : 'background: linear-gradient(135deg, #1e293b 0%, #374151 100%);'}">
             <div class="game-card__header">
                 <span class="game-card__time">🏁 Final Game</span>
                 <span class="badge ${isCorrect ? 'badge--success' : 'badge--danger'}">
