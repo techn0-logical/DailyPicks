@@ -546,16 +546,15 @@ function createYesterdayGameCard(game) {
                 <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
                     <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🏟️ Game Details</h4>
                     <div style="margin-bottom: 0.75rem; color: #cbd5e1;">
-                        ${game.game_details.matchup}<br>
-                        <strong style="color: #f8fafc;">Final:</strong> ${game.game_details.final_score}
+                        ${getTeamNameWithLogo(game.away_team, '20px', true)} @ ${getTeamNameWithLogo(game.home_team, '20px', true)}<br>
+                        <strong style="color: #f8fafc;">Final:</strong> ${getTeamNameWithLogo(game.actual_winner, '18px', true)} ${game.actual_score[1]}-${game.actual_score[0]}
                     </div>
                     
                     ${game.game_details.game_highlights ? `
                         <div style="margin-bottom: 0.75rem;">
                             <strong style="color: #f8fafc;">Game Highlights:</strong>
                             <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
-                                Duration: ${game.game_details.game_highlights.duration}<br>
-                                Winner: ${game.game_details.game_highlights.winner}
+                                Duration: ${game.game_details.game_highlights.duration}
                             </div>
                         </div>
                     ` : ''}
