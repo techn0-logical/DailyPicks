@@ -485,7 +485,7 @@ function createYesterdayGameCard(game) {
                 <div>
                     <span style="font-size: 0.875rem; color: #cbd5e1; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Confidence:</span>
                     <span style="font-weight: 700; color: #f8fafc; margin-left: 0.5rem; text-shadow: 0 0 4px rgba(248, 250, 252, 0.5);">${game.confidence}%</span>
-                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
+                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem; text-shadow: none;">${confidenceLevel.label}</span>
                 </div>
             </div>
             
