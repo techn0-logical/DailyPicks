@@ -142,15 +142,6 @@ function populateYesterdaySection() {
             </div>
         </div>
         
-        ${summary.notable_outcomes.length > 0 ? `
-        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.75rem; border: 1px solid #374151;">
-            <h4 style="color: #f8fafc; margin-bottom: 0.75rem; font-size: 1rem;">📈 Notable Outcomes:</h4>
-            <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1;">
-                ${summary.notable_outcomes.map(outcome => `<li style="margin-bottom: 0.5rem;">${outcome}</li>`).join('')}
-            </ul>
-        </div>
-        ` : ''}
-        
         ${yesterdayData.celebration_message ? `
         <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 0.75rem; border: 1px solid #3b82f6; text-align: center;">
             <p style="color: #1e40af; margin: 0; font-weight: 600; font-style: italic;">${yesterdayData.celebration_message}</p>
