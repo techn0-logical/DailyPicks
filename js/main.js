@@ -128,15 +128,15 @@ function populateYesterdaySection() {
     
     summaryDiv.innerHTML = `
         <div class="stats-grid">
-            <div class="stat-card" style="border-left: 4px solid #2563eb;">
+            <div class="stat-card">
                 <div class="stat-card__value">${summary.total_games}</div>
                 <div class="stat-card__label">Total Games</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid #059669;">
+            <div class="stat-card">
                 <div class="stat-card__value">${summary.correct_predictions}</div>
                 <div class="stat-card__label">Correct Predictions</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid ${summary.accuracy >= 75 ? '#059669' : summary.accuracy >= 60 ? '#d97706' : '#dc2626'};">
+            <div class="stat-card">
                 <div class="stat-card__value">${summary.accuracy}%</div>
                 <div class="stat-card__label">Daily Accuracy</div>
             </div>
@@ -165,13 +165,13 @@ function populateTodaySection() {
     
     summaryDiv.innerHTML = `
         <div class="stats-grid">
-            <div class="stat-card" style="border-left: 4px solid #2563eb;">
+            <div class="stat-card">
                 <div class="stat-card__value">${summary.total_games}</div>
                 <div class="stat-card__label">Total Predictions</div>
                 <div class="stat-card__sublabel">Made Today</div>
             </div>
             
-            <div class="stat-card" style="border-left: 4px solid #7c3aed;">
+            <div class="stat-card">
                 <div class="stat-card__value">${summary.avg_confidence}%</div>
                 <div class="stat-card__label">Avg Confidence</div>
                 <div class="stat-card__sublabel">${getConfidenceLevel(summary.avg_confidence).label}</div>
@@ -310,22 +310,22 @@ function populatePerformanceSection() {
         ` : ''}
         
         <div class="stats-grid">
-            <div class="stat-card" style="border-left: 4px solid #2563eb;">
+            <div class="stat-card">
                 <div class="stat-card__value">${modelStats.overall_accuracy}%</div>
                 <div class="stat-card__label">Overall Accuracy</div>
                 <div class="stat-card__sublabel">${modelStats.total_predictions} total predictions</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid #059669;">
+            <div class="stat-card">
                 <div class="stat-card__value">+${modelStats.vs_industry}%</div>
                 <div class="stat-card__label">vs Industry</div>
                 <div class="stat-card__sublabel">Industry: ${modelStats.industry_standard}%</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid ${recentPerf.last_5_days?.status === 'COLD STREAK' ? '#dc2626' : '#d97706'};">
+            <div class="stat-card">
                 <div class="stat-card__value">${recentPerf.last_5_days?.accuracy || recentPerf.last_10_days?.accuracy || 'N/A'}%</div>
                 <div class="stat-card__label">Recent Performance</div>
                 <div class="stat-card__sublabel">${recentPerf.last_5_days?.status || recentPerf.last_10_days?.status || 'N/A'}</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid #7c3aed;">
+            <div class="stat-card">
                 <div class="stat-card__value">${modelStats.completed_games || modelStats.correct_predictions}</div>
                 <div class="stat-card__label">Completed Games</div>
                 <div class="stat-card__sublabel">${modelStats.pending_games ? modelStats.pending_games + ' pending' : 'Total tracked'}</div>
@@ -342,11 +342,11 @@ function populatePerformanceSection() {
                     else if (data.accuracy >= 55) color = '#d97706';
                     
                     return `
-                        <div class="stat-card" style="border-left: 4px solid ${color}; background: #1e293b;">
+                        <div class="stat-card" style="background: #1e293b;">
                             <div class="stat-card__value">${data.accuracy}%</div>
                             <div class="stat-card__label">${bracket}</div>
                             <div class="stat-card__sublabel">${data.record || data.predictions + ' predictions'}</div>
-                            ${data.status ? `<div style="font-size: 0.75rem; color: ${color}; font-weight: 600; margin-top: 0.25rem;">${data.status}</div>` : ''}
+                            ${data.status ? `<div style="font-size: 0.75rem; color: #f8fafc; font-weight: 600; margin-top: 0.25rem;">${data.status}</div>` : ''}
                         </div>
                     `;
                 }).join('')}
@@ -362,12 +362,12 @@ function populatePerformanceSection() {
         <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.75rem; border: 1px solid #f59e0b;">
             <h4 style="margin-bottom: 1rem; color: #92400e; font-size: 1.125rem;">🏆 Playoff vs Regular Season</h4>
             <div class="stats-grid">
-                <div class="stat-card" style="border-left: 4px solid #059669; background: #1e293b;">
+                <div class="stat-card" style="background: #1e293b;">
                     <div class="stat-card__value">${seasonal.september_regular.accuracy}%</div>
                     <div class="stat-card__label">September</div>
                     <div class="stat-card__sublabel">${seasonal.september_regular.record} (Regular Season)</div>
                 </div>
-                <div class="stat-card" style="border-left: 4px solid #d97706; background: #1e293b;">
+                <div class="stat-card" style="background: #1e293b;">
                     <div class="stat-card__value">${seasonal.october_playoffs.accuracy}%</div>
                     <div class="stat-card__label">October</div>
                     <div class="stat-card__sublabel">${seasonal.october_playoffs.record} (Playoffs)</div>
