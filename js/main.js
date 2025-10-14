@@ -498,13 +498,6 @@ function createYesterdayGameCard(game) {
                 </div>
             </div>
             
-            ${game.notes ? `
-                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.5rem; border: 1px solid #f59e0b;">
-                    <span style="font-size: 0.75rem; color: #92400e; font-weight: 600;">💡 Analysis:</span>
-                    <p style="font-size: 0.875rem; color: #92400e; margin: 0.25rem 0 0 0; font-style: italic;">${game.notes}</p>
-                </div>
-            ` : ''}
-            
             ${game.game_details ? `
                 <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
                     <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🏟️ Game Details</h4>
