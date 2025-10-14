@@ -413,6 +413,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     box-shadow: var(--shadow-light);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease;
 }
 
