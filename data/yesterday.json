@@ -8,8 +8,7 @@
         "notable_outcomes": [
             "Expected outcome for a low confidence pick",
             "Seattle won 3-1 over Toronto - genuine coin flip territory",
-            "Maintained overall system accuracy at 56.3%",
-            "Low confidence picks performing as expected"
+            "Maintained overall system accuracy at 56.3%"
         ]
     },
     "games": [
@@ -31,7 +30,6 @@
                 "Minimal home field advantage for Toronto",
                 "Expected outcome for low confidence pick"
             ],
-            "result": "incorrect",
             "notes": "Expected outcome for a low confidence pick - genuine coin flip territory",
             "game_details": {
                 "matchup": "Seattle Mariners @ Toronto Blue Jays",
