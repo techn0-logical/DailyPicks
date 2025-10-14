@@ -464,7 +464,7 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2); padding: 0.75rem; min-width: 0;">
                     <div>
                         <strong style="color: #60a5fa; font-size: 0.875rem;">🎯 Predicted:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden;">
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">
                             ${getTeamNameWithLogo(game.predicted_winner, '18px', true)}
                         </span>
                     </div>
@@ -473,7 +473,7 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2); padding: 0.75rem; min-width: 0;">
                     <div>
                         <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'}; font-size: 0.875rem;">🏁 Actual:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden;">
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">
                             ${getTeamNameWithLogo(game.actual_winner, '18px', true)}
                         </span><br>
                         <small style="color: #cbd5e1; font-size: 0.75rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Score: ${game.actual_score.join('-')}</small>
