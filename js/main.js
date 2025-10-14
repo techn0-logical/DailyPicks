@@ -464,8 +464,8 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2); padding: 0.75rem; min-width: 0;">
                     <div>
                         <strong style="color: #60a5fa; font-size: 0.875rem;">🎯 Predicted:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">
-                            ${getTeamNameWithLogo(game.predicted_winner, '18px', true)}
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
+                            ${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}
                         </span>
                     </div>
                 </div>
@@ -473,8 +473,8 @@ function createYesterdayGameCard(game) {
                 <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2); padding: 0.75rem; min-width: 0;">
                     <div>
                         <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'}; font-size: 0.875rem;">🏁 Actual:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">
-                            ${getTeamNameWithLogo(game.actual_winner, '18px', true)}
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
+                            ${getTeamNameWithLogo(game.actual_winner, '18px', 'subtle')}
                         </span><br>
                         <small style="color: #cbd5e1; font-size: 0.75rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Score: ${game.actual_score.join('-')}</small>
                     </div>
@@ -675,7 +675,12 @@ function getTeamNameWithLogo(teamCode, size = '20px', isLightVersion = false) {
     const teamLogo = getTeamLogo(teamCode);
     
     if (teamLogo) {
-        const lightStyle = isLightVersion ? 'opacity: 1.0; filter: brightness(1.6) saturate(1.1) contrast(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));' : '';
+        let lightStyle = '';
+        if (isLightVersion === 'subtle') {
+            lightStyle = 'opacity: 1.0; filter: brightness(1.2) saturate(1.05) drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));';
+        } else if (isLightVersion) {
+            lightStyle = 'opacity: 1.0; filter: brightness(1.6) saturate(1.1) contrast(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));';
+        }
         return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain; ${lightStyle}"/>${teamName}`;
     }
     return teamName;
