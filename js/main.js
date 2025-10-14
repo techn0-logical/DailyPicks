@@ -516,15 +516,6 @@ function createYesterdayGameCard(game) {
                     ` : ''}
                 </div>
             ` : ''}
-            
-            ${game.key_factors && game.key_factors.length > 0 ? `
-                <div style="padding-top: 1rem; border-top: 1px solid #475569; margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b; box-shadow: 0 0 20px rgba(96, 165, 250, 0.15), 0 0 40px rgba(96, 165, 250, 0.08), inset 0 0 30px rgba(96, 165, 250, 0.05);">
-                    <strong style="color: #60a5fa; font-size: 0.875rem; text-shadow: 0 0 8px rgba(96, 165, 250, 0.6), 0 0 16px rgba(96, 165, 250, 0.4);">📊 Key Factors:</strong>
-                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.875rem; color: #cbd5e1;">
-                        ${game.key_factors.map(factor => `<li style="margin-bottom: 0.25rem;">${factor}</li>`).join('')}
-                    </ul>
-                </div>
-            ` : ''}
         </div>
     `;
 }
