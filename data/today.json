@@ -1,37 +1,32 @@
 {
-    "date": "2025-10-13",
+    "date": "2025-10-15",
     "summary": {
-        "total_games": 2,
-        "pending_games": 2,
+        "total_games": 1,
+        "pending_games": 1,
         "completed_games": 0,
-        "avg_confidence": 51.25,
-        "status": "Two active predictions - Both are low confidence (genuine toss-ups)"
+        "avg_confidence": 53.3,
+        "status": "Single game prediction - Low confidence (genuine toss-up)"
     },
     "games": [
         {
-            "id": "game_401",
-            "home_team": "MIL",
-            "away_team": "LAD",
-            "predicted_winner": "LAD",
-            "confidence": 52.0,
+            "id": "game_403",
+            "home_team": "SEA",
+            "away_team": "TOR",
+            "predicted_winner": "SEA",
+            "confidence": 53.3,
             "status": "pending",
-            "analysis": "LAD @ MIL: Predicting Dodgers 52.0% 💡"
-        },
-        {
-            "id": "game_402",
-            "home_team": "TOR", 
-            "away_team": "SEA",
-            "predicted_winner": "TOR",
-            "confidence": 50.5,
-            "status": "pending",
-            "analysis": "SEA @ TOR: Predicting Blue Jays 50.5% 💡"
+            "win_probability": 0.533,
+            "game_time": "TBD",
+            "recommendation": "Weak Pick",
+            "analysis": "TOR @ SEA: Predicting Mariners 53.3% 💡 - Genuine toss-up territory. System correctly identifies this as a competitive matchup with minimal edge."
         }
     ],
     "prediction_notes": [
-        "Two active predictions - both are low confidence (genuine toss-ups)",
-        "LAD @ MIL: Predicting Dodgers 52.0% 💡",
-        "SEA @ TOR: Predicting Blue Jays 50.5% 💡",
-        "System status: 56.3% overall accuracy (+3.3% vs industry standard)",
-        "Both are coin flips - competitive games expected"
-    ]
+        "Single Game Day: Typical playoff schedule with limited games",
+        "Low Confidence Pick: System correctly identifies this as a competitive matchup",
+        "Coin Flip Territory: 53.3% prediction reflects genuine uncertainty",
+        "TOR @ SEA: Predicting Mariners 53.3% 💡",
+        "Home field advantage provides minimal edge to Seattle"
+    ],
+    "pending_message": "Single game today is a genuine toss-up with very low confidence. Approach with caution."
 }

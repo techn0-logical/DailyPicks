@@ -1,13 +1,13 @@
 {
     "model_stats": {
-        "overall_accuracy": 56.3,
-        "total_predictions": 71,
-        "correct_predictions": 40,
-        "completed_games": 71,
-        "pending_games": 2,
+        "overall_accuracy": 56.2,
+        "total_predictions": 76,
+        "correct_predictions": 41,
+        "completed_games": 73,
+        "pending_games": 3,
         "industry_standard": 53.0,
-        "vs_industry": 3.3,
-        "last_updated": "2025-10-12T16:00:00Z",
+        "vs_industry": 3.2,
+        "last_updated": "2025-10-15T16:00:00Z",
         "data_status": "cleaned",
         "performance_tier": "GOOD",
         "confidence_brackets": {

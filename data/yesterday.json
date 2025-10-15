@@ -1,57 +1,48 @@
 {
-    "date": "2025-10-12",
+    "date": "2025-10-14",
     "summary": {
         "total_games": 1,
-        "predictions_made": 1,
+        "predictions_made": 0,
         "correct_predictions": 0,
-        "accuracy": 0.0,
-        "notable_outcomes": [
-            "Expected outcome for a low confidence pick",
-            "Seattle won 3-1 over Toronto - genuine coin flip territory",
-            "Maintained overall system accuracy at 56.3%"
-        ]
+        "accuracy": 0,
+        "no_predictions_message": "No predictions found for October 14th"
     },
     "games": [
         {
-            "id": "game_102",
-            "game_number": "813056",
-            "home_team": "TOR",
-            "away_team": "SEA",
-            "predicted_winner": "TOR",
-            "actual_winner": "SEA",
-            "actual_score": [3, 1],
-            "confidence": 50.5,
-            "confidence_level": "LOW",
-            "win_probability": 0.505,
-            "model_used": "XGBoost (simple_fallback)",
-            "prediction_time": "October 12, 2025 at 9:00 AM",
-            "key_factors": [
-                "Genuine coin flip territory",
-                "Minimal home field advantage for Toronto",
-                "Expected outcome for low confidence pick"
-            ],
-            "notes": "Expected outcome for a low confidence pick - genuine coin flip territory",
+            "id": "game_103",
+            "game_number": "813057",
+            "home_team": "MIL",
+            "away_team": "LAD",
+            "predicted_winner": null,
+            "actual_winner": "LAD",
+            "actual_score": [5, 1],
+            "confidence": null,
+            "confidence_level": null,
+            "win_probability": null,
+            "model_used": null,
+            "prediction_time": null,
+            "result": "no_prediction",
             "game_details": {
-                "matchup": "Seattle Mariners @ Toronto Blue Jays",
-                "date": "October 12, 2025",
-                "final_score": "Seattle Mariners 3-1",
+                "matchup": "Los Angeles Dodgers @ Milwaukee Brewers",
+                "date": "October 14, 2025",
+                "final_score": "Los Angeles Dodgers 5, Milwaukee Brewers 1",
                 "game_highlights": {
-                    "duration": "9 innings"
+                    "duration": "2h 48m",
+                    "win_margin": "4 runs",
+                    "total_runs": 6,
+                    "game_type": "Convincing Win"
                 },
                 "key_stats": [
-                    "Expected outcome for a low confidence pick",
-                    "Genuine coin flip territory as predicted",
-                    "Maintained overall system accuracy at 56.3%",
-                    "Low confidence picks performing as expected (51.3%)"
+                    "Convincing Victory: Dodgers won by 4 runs, showing they were the stronger team",
+                    "Low-Scoring Game: Only 6 total runs, suggesting good pitching or poor hitting"
                 ]
             }
         }
     ],
     "performance_notes": [
-        "Expected outcome for a low confidence pick (50.5%)",
-        "System correctly identified genuine toss-up scenario",
-        "Maintained overall system accuracy at 56.3%", 
-        "Low confidence picks performing as expected at 51.3%"
+        "No predictions were made for October 14th games",
+        "LAD defeated MIL 5-1 in a convincing victory",
+        "System accuracy unchanged due to no predictions"
     ],
-    "analysis_message": "Expected outcome for a low confidence pick - genuine coin flip territory. System remains fundamentally sound."
+    "analysis_message": "No predictions found for October 14th. LAD defeated MIL 5-1 in a convincing 4-run victory."
 }
