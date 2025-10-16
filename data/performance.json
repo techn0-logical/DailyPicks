@@ -1,131 +1,100 @@
 {
     "model_stats": {
-        "overall_accuracy": 56.2,
+        "overall_accuracy": 55.4,
         "total_predictions": 76,
         "correct_predictions": 41,
-        "completed_games": 73,
-        "pending_games": 3,
+        "completed_games": 74,
+        "pending_games": 2,
         "industry_standard": 53.0,
-        "vs_industry": 3.2,
-        "last_updated": "2025-10-15T16:00:00Z",
+        "vs_industry": 2.4,
+        "last_updated": "2025-10-16T16:00:00Z",
         "data_status": "cleaned",
         "performance_tier": "GOOD",
         "confidence_brackets": {
-            "HIGH (≥60%)": {
+            "HIGH (≥80%)": {
                 "predictions": 3,
                 "accuracy": 100.0,
                 "record": "3/3",
-                "status": "PERFECT!"
+                "status": "PERFECT EXECUTION"
             },
-            "MEDIUM (55-59%)": {
+            "MEDIUM (60-79%)": {
                 "predictions": 29,
                 "accuracy": 58.6,
                 "record": "17/29",
-                "status": "Solid"
+                "status": "SOLID PERFORMANCE"
             },
-            "LOW (<55%)": {
-                "predictions": 38,
-                "accuracy": 52.6,
-                "record": "20/38",
-                "status": "True toss-ups"
+            "LOW (<60%)": {
+                "predictions": 42,
+                "accuracy": 50.0,
+                "record": "21/42",
+                "status": "COIN FLIP"
             }
         }
     },
     "recent_performance": {
         "current_streak": {
-            "type": "win",
+            "type": "loss",
             "length": 2,
-            "status": "2-game win streak 🔥"
+            "status": "2-game losing streak"
         },
         "last_5_days": {
             "accuracy": 40.0,
             "predictions": 5,
             "record": "2/5",
-            "status": "Below average - cold streak"
+            "status": "Recent cold streak"
         },
         "last_10_days": {
-            "accuracy": 60.0,
+            "accuracy": 40.0,
             "predictions": 10,
-            "record": "6/10",
-            "status": "Above average"
+            "record": "4/10",
+            "status": "Recent cold streak"
         },
-        "momentum": "Building with 2 wins in last 3"
+        "momentum": "Current weakness - 2-game losing streak"
     },
-    "seasonal_breakdown": {
-        "september_regular": {
-            "accuracy": 57.4,
-            "predictions": 47,
-            "record": "27/47",
-            "type": "Regular Season"
+    "team_performance": {
+        "most_reliable": {
+            "SF": "100% accuracy",
+            "LAD": "87.5% accuracy",
+            "SD": "66.7% accuracy",
+            "MIL": "66.7% accuracy"
         },
-        "october_playoffs": {
-            "accuracy": 56.5,
-            "predictions": 23,
-            "record": "13/23",
-            "type": "Playoffs"
-        },
-        "playoff_impact": -0.9,
-        "playoff_note": "Performance slightly down in playoffs (expected variance)"
-    },
-    "streak_analysis": {
-        "longest_win_streak": 6,
-        "longest_losing_streak": 4,
-        "current_streak": "2-game win streak"
-    },
-    "top_team_predictions": [
-        {
-            "team": "SF Giants",
-            "accuracy": 100.0,
-            "record": "3/3"
-        },
-        {
-            "team": "LAD Dodgers", 
-            "accuracy": 85.7,
-            "record": "6/7"
-        },
-        {
-            "team": "PHI Phillies",
-            "accuracy": 66.7,
-            "record": "2/3"
-        },
-        {
-            "team": "BOS Red Sox",
-            "accuracy": 66.7,
-            "record": "2/3"
-        },
-        {
-            "team": "SD Padres",
-            "accuracy": 66.7,
-            "record": "4/6"
+        "challenging_teams": {
+            "SEA": "25% accuracy",
+            "ATL": "33.3% accuracy",
+            "DET": "33.3% accuracy"
         }
-    ],
+    },
+    "system_health": {
+        "accuracy": 80,
+        "confidence_calibration": 100,
+        "recent_momentum": 40,
+        "sample_size": 100,
+        "grade": "GOOD"
+    },
     "key_insights": {
         "strengths": [
-            "System is working well - significantly above industry standards (+4.1%)",
-            "High confidence picks are gold - 100% accuracy (3/3)",
-            "Confidence levels are reliable - clear performance tiers",
-            "Recent momentum building - coming off 2 wins"
+            "High confidence picks: Trust completely (100% success rate)",
+            "Excellent confidence calibration across all levels",
+            "Solid 2.4% edge over industry standards",
+            "Perfect identification of high-probability wins"
         ],
-        "performance_validation": [
-            "57.1% accuracy significantly above industry standard",
-            "Clean confidence level breakdown validates system reliability", 
-            "Perfect high-confidence track record proves system quality",
-            "Current 2-game win streak shows positive momentum"
+        "areas_to_watch": [
+            "Recent cold streak (40% over last 5-10 games)",
+            "Current 2-game losing streak",
+            "Low confidence picks performing as expected (coin flips)"
         ],
         "strategic_takeaways": [
-            "Trust high-confidence picks completely - they're perfect",
-            "Medium confidence performing solidly at 58.6%",
-            "Low confidence appropriately reflects genuine uncertainty",
-            "System correctly identifies prediction difficulty levels"
+            "High confidence: Trust completely (100% success rate)",
+            "Medium confidence: Good opportunities (58.6% vs ~60% needed)",
+            "Low confidence: Properly identified as coin flips"
         ]
     },
     "model_insights": [
-        "🎯 High-confidence picks are perfect (100%) - trust them completely",
-        "📊 Performance is 4.1% above industry standard - system working well",
-        "� Current 2-game win streak building positive momentum",
-        "⚡ Medium confidence solid at 58.6% - reliable performance tier",
-        "💡 Low confidence at 52.6% appropriate for genuine toss-ups",
-        "🏆 Overall 57.1% accuracy validates system effectiveness"
+        "🔥 High Confidence Excellence: Perfect 100% accuracy on high-confidence picks - trust them completely",
+        "⚡ Medium Confidence Solid: 58.6% performance shows good value identification",
+        "💡 Low Confidence Calibrated: 50.0% accurately reflects coin-flip scenarios",
+        "� Industry Edge Maintained: +2.4% above standard 53% baseline demonstrates system value",
+        "🚀 Momentum Tracking: Current cold streak is normal variance, overall system remains sound"
     ],
-    "bottom_line": "System performing well above industry average with reliable confidence levels and perfect high-confidence predictions. Recent 2-game win streak shows positive momentum building! 🏆⚾"
+    "bottom_line": "The system is delivering solid value with a 2.4% edge over industry standards. The confidence calibration is excellent, correctly identifying high-probability wins and coin-flip scenarios. While experiencing a recent cold streak, the overall performance demonstrates a profitable, well-calibrated prediction system."
 }

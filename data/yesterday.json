@@ -1,48 +1,45 @@
 {
-    "date": "2025-10-14",
+    "date": "2025-10-15",
     "summary": {
         "total_games": 1,
-        "predictions_made": 0,
+        "predictions_made": 1,
         "correct_predictions": 0,
-        "accuracy": 0,
-        "no_predictions_message": "No predictions found for October 14th"
+        "accuracy": 0.0,
+        "performance_grade": "Below Average",
+        "confidence_calibration": "Low confidence prediction missed"
     },
     "games": [
         {
-            "id": "game_103",
-            "game_number": "813057",
-            "home_team": "MIL",
-            "away_team": "LAD",
-            "predicted_winner": null,
-            "actual_winner": "LAD",
-            "actual_score": [5, 1],
-            "confidence": null,
-            "confidence_level": null,
-            "win_probability": null,
-            "model_used": null,
-            "prediction_time": null,
-            "result": "no_prediction",
+            "id": "game_404",
+            "home_team": "SEA",
+            "away_team": "TOR",
+            "predicted_winner": "SEA",
+            "actual_winner": "TOR",
+            "actual_score": [4, 13],
+            "confidence": 53.3,
+            "confidence_level": "LOW",
+            "win_probability": 0.533,
+            "model_used": "MLB Advanced Analytics v3.2",
+            "prediction_time": "October 15, 2025",
+            "result": "incorrect",
             "game_details": {
-                "matchup": "Los Angeles Dodgers @ Milwaukee Brewers",
-                "date": "October 14, 2025",
-                "final_score": "Los Angeles Dodgers 5, Milwaukee Brewers 1",
+                "matchup": "Toronto Blue Jays @ Seattle Mariners",
+                "date": "October 15, 2025",
+                "final_score": "Toronto Blue Jays 13, Seattle Mariners 4",
                 "game_highlights": {
-                    "duration": "2h 48m",
-                    "win_margin": "4 runs",
-                    "total_runs": 6,
-                    "game_type": "Convincing Win"
+                    "blowout": true,
+                    "margin": 9,
+                    "total_runs": 17
                 },
                 "key_stats": [
-                    "Convincing Victory: Dodgers won by 4 runs, showing they were the stronger team",
-                    "Low-Scoring Game: Only 6 total runs, suggesting good pitching or poor hitting"
+                    "Blowout Game: TOR dominated 13-4, indicating we may have missed key factors"
                 ]
             }
         }
     ],
     "performance_notes": [
-        "No predictions were made for October 14th games",
-        "LAD defeated MIL 5-1 in a convincing victory",
-        "System accuracy unchanged due to no predictions"
+        "Blowout Game: TOR dominated 13-4, indicating we may have missed key factors",
+        "Continue monitoring recent cold patch trend"
     ],
-    "analysis_message": "No predictions found for October 14th. LAD defeated MIL 5-1 in a convincing 4-run victory."
+    "analysis_message": "Missed our single prediction (SEA 53.3% - Low Confidence). TOR won decisively 13-4. Continue monitoring cold patch."
 }
