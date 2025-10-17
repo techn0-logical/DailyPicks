@@ -1,55 +1,39 @@
 {
-  "date": "2025-10-17",
+  "date": "2025-10-18",
   "summary": {
-    "total_games": 2,
-    "games_to_watch": 2,
-    "early_favorites": [],
-    "headline": "2 high-stakes playoff games",
-    "description": "Continuation and development of playoff series.",
-    "avg_confidence": null,
-    "expected_record": "No predictions yet"
+    "total_games": 1,
+    "games_to_watch": 1,
+    "early_favorites": ["LAD"],
+    "headline": "Single game scheduled",
+    "description": "Continuation series: Same teams playing again after today",
+    "avg_confidence": 55.2,
+    "expected_record": "1 medium confidence pick"
   },
   "games": [
     {
-      "id": "game_701",
+      "id": "game_801",
       "home_team": "LAD",
       "away_team": "MIL",
       "game_time": "TBD",
       "venue": "Dodger Stadium, Los Angeles",
       "game_type": "Playoff",
-      "date": "2025-10-17",
-      "predicted_winner": null,
-      "win_probability": null,
-      "confidence": null,
-      "confidence_level": null,
-      "model_used": null,
+      "date": "2025-10-18",
+      "predicted_winner": "LAD",
+      "win_probability": 0.552,
+      "confidence": 55.2,
+      "confidence_level": "MEDIUM",
+      "model_used": "MLB Advanced Analytics v3.2",
       "status": "scheduled",
-      "analysis": "Continuation of series. No predictions generated yet."
-    },
-    {
-      "id": "game_702",
-      "home_team": "SEA",
-      "away_team": "TOR",
-      "game_time": "TBD",
-      "venue": "T-Mobile Park, Seattle",
-      "game_type": "Playoff",
-      "date": "2025-10-17",
-      "predicted_winner": null,
-      "win_probability": null,
-      "confidence": null,
-      "confidence_level": null,
-      "model_used": null,
-      "status": "scheduled",
-      "analysis": "Series development. No predictions generated yet."
+      "analysis": "Slight edge for LAD, close game expected"
     }
   ],
   "strategic_context": {
-    "prediction_status": "No predictions generated yet",
-    "system_status": "Increased variance due to playoff pressure",
-    "upcoming_analysis": "Home field advantage amplified in elimination scenarios. Momentum carry-over from today's games crucial. Conservative approach warranted given current cold streak."
+    "prediction_status": "1 medium confidence pick",
+    "system_status": "Home advantage supporting LAD pick",
+    "upcoming_analysis": "LAD playing at home (Dodger Stadium). Home advantage: Supporting our LAD pick."
   },
   "preview_notes": [
-    "No predictions generated yet for tomorrow's games"
+    "Single game scheduled: MIL @ LAD at Dodger Stadium"
   ],
-  "bottom_line": "Conservative approach warranted given current cold streak and playoff variance."
+  "bottom_line": "Medium confidence pick on LAD with home field advantage."
 }

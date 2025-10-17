@@ -1,45 +1,73 @@
 {
-    "date": "2025-10-15",
+    "date": "2025-10-16",
     "summary": {
-        "total_games": 1,
-        "predictions_made": 1,
-        "correct_predictions": 0,
-        "accuracy": 0.0,
-        "performance_grade": "Below Average",
-        "confidence_calibration": "Low confidence prediction missed"
+        "total_games": 2,
+        "predictions_made": 2,
+        "correct_predictions": 1,
+        "accuracy": 50.0,
+        "performance_grade": "Mixed Results",
+        "confidence_calibration": "Medium confidence correct, low confidence missed"
     },
     "games": [
         {
-            "id": "game_404",
+            "id": "game_601",
+            "home_team": "LAD",
+            "away_team": "MIL",
+            "predicted_winner": "LAD",
+            "actual_winner": "LAD",
+            "actual_score": [3, 1],
+            "confidence": 55.2,
+            "confidence_level": "MEDIUM",
+            "win_probability": 0.552,
+            "model_used": "MLB Advanced Analytics v3.2",
+            "prediction_time": "October 16, 2025",
+            "result": "correct",
+            "game_details": {
+                "matchup": "Milwaukee Brewers @ Los Angeles Dodgers",
+                "date": "October 16, 2025",
+                "final_score": "Los Angeles Dodgers 3, Milwaukee Brewers 1",
+                "game_highlights": {
+                    "close_game": true,
+                    "margin": 2,
+                    "total_runs": 4
+                },
+                "key_stats": [
+                    "Good execution on medium confidence pick"
+                ]
+            }
+        },
+        {
+            "id": "game_602",
             "home_team": "SEA",
             "away_team": "TOR",
             "predicted_winner": "SEA",
             "actual_winner": "TOR",
-            "actual_score": [4, 13],
+            "actual_score": [2, 8],
             "confidence": 53.3,
             "confidence_level": "LOW",
             "win_probability": 0.533,
             "model_used": "MLB Advanced Analytics v3.2",
-            "prediction_time": "October 15, 2025",
+            "prediction_time": "October 16, 2025",
             "result": "incorrect",
             "game_details": {
                 "matchup": "Toronto Blue Jays @ Seattle Mariners",
-                "date": "October 15, 2025",
-                "final_score": "Toronto Blue Jays 13, Seattle Mariners 4",
+                "date": "October 16, 2025",
+                "final_score": "Toronto Blue Jays 8, Seattle Mariners 2",
                 "game_highlights": {
-                    "blowout": true,
-                    "margin": 9,
-                    "total_runs": 17
+                    "convincing_win": true,
+                    "margin": 6,
+                    "total_runs": 10
                 },
                 "key_stats": [
-                    "Blowout Game: TOR dominated 13-4, indicating we may have missed key factors"
+                    "Expected variance on low confidence pick"
                 ]
             }
         }
     ],
     "performance_notes": [
-        "Blowout Game: TOR dominated 13-4, indicating we may have missed key factors",
-        "Continue monitoring recent cold patch trend"
+        "Mixed scoring patterns: 1 close game (LAD beat MIL 3-1) and 1 convincing win (TOR beat SEA 8-2)",
+        "LAD home win validated our medium confidence assessment",
+        "TOR upset of SEA was a 6-run blowout, hard to predict"
     ],
-    "analysis_message": "Missed our single prediction (SEA 53.3% - Low Confidence). TOR won decisively 13-4. Continue monitoring cold patch."
+    "analysis_message": "Mixed results: Got LAD correct (55.2% - Medium), missed SEA (53.3% - Low). TOR upset was convincing 8-2 win."
 }

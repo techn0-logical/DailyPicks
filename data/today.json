@@ -1,15 +1,15 @@
 {
-    "date": "2025-10-16",
+    "date": "2025-10-17",
     "summary": {
         "total_games": 2,
         "pending_games": 2,
         "completed_games": 0,
         "avg_confidence": 54.25,
-        "status": "2 playoff games: 1 medium, 1 low confidence"
+        "status": "2 playoff games scheduled"
     },
     "games": [
         {
-            "id": "game_601",
+            "id": "game_701",
             "home_team": "LAD",
             "away_team": "MIL",
             "predicted_winner": "LAD",
@@ -18,10 +18,10 @@
             "win_probability": 0.552,
             "game_time": "TBD",
             "recommendation": "Medium Pick",
-            "analysis": "LAD favored (55.2% - Medium Confidence). Expected success: ~58.6% based on historical medium confidence performance."
+            "analysis": "Slight edge for LAD, close game expected"
         },
         {
-            "id": "game_602",
+            "id": "game_702",
             "home_team": "SEA",
             "away_team": "TOR",
             "predicted_winner": "SEA",
@@ -30,11 +30,13 @@
             "win_probability": 0.533,
             "game_time": "TBD",
             "recommendation": "Weak Pick",
-            "analysis": "SEA favored (53.3% - Low Confidence). Expected success: ~52.6% (barely above random chance)."
+            "analysis": "Pick'em territory, coin flip game"
         }
     ],
     "prediction_notes": [
-        "Confidence mix: 1 medium confidence, 1 low confidence"
+        "Games to watch: MIL @ LAD and TOR @ SEA",
+        "LAD home advantage: 55.2%",
+        "LAD performance - Our strongest pick today, medium confidence"
     ],
-    "pending_message": "2 playoff games today: 1 medium, 1 low confidence."
+    "pending_message": "2 games scheduled. Games to watch: MIL @ LAD and TOR @ SEA."
 }
