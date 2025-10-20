@@ -199,8 +199,8 @@ body {
 }
 
 .section--featured .section__title {
-    background: linear-gradient(135deg, var(--accent-color) 0%, var(--info-color) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: var(--text-primary);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
