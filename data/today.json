@@ -2,10 +2,12 @@
     "date": "2025-10-17",
     "summary": {
         "total_games": 2,
+        "predictions_made": 2,
         "pending_games": 2,
         "completed_games": 0,
         "avg_confidence": 54.25,
-        "status": "2 playoff games scheduled"
+        "status": "2 playoff games scheduled",
+        "confidence_calibration": "1 medium confidence, 1 low confidence prediction"
     },
     "games": [
         {
@@ -13,30 +15,58 @@
             "home_team": "LAD",
             "away_team": "MIL",
             "predicted_winner": "LAD",
+            "actual_winner": null,
+            "actual_score": null,
             "confidence": 55.2,
             "confidence_level": "MEDIUM",
             "win_probability": 0.552,
-            "game_time": "TBD",
-            "recommendation": "Medium Pick",
-            "analysis": "Slight edge for LAD, close game expected"
+            "model_used": "MLB Advanced Analytics v3.2",
+            "prediction_time": "October 17, 2025",
+            "result": "pending",
+            "game_details": {
+                "matchup": "Milwaukee Brewers @ Los Angeles Dodgers",
+                "date": "October 17, 2025",
+                "final_score": "Game pending",
+                "game_highlights": {
+                    "status": "scheduled",
+                    "venue": "Dodger Stadium"
+                },
+                "key_stats": [
+                    "Slight edge for LAD, close game expected"
+                ]
+            }
         },
         {
             "id": "game_702",
             "home_team": "SEA",
             "away_team": "TOR",
             "predicted_winner": "SEA",
+            "actual_winner": null,
+            "actual_score": null,
             "confidence": 53.3,
             "confidence_level": "LOW",
             "win_probability": 0.533,
-            "game_time": "TBD",
-            "recommendation": "Weak Pick",
-            "analysis": "Pick'em territory, coin flip game"
+            "model_used": "MLB Advanced Analytics v3.2",
+            "prediction_time": "October 17, 2025",
+            "result": "pending",
+            "game_details": {
+                "matchup": "Toronto Blue Jays @ Seattle Mariners",
+                "date": "October 17, 2025",
+                "final_score": "Game pending",
+                "game_highlights": {
+                    "status": "scheduled",
+                    "venue": "T-Mobile Park"
+                },
+                "key_stats": [
+                    "Pick'em territory, coin flip game"
+                ]
+            }
         }
     ],
-    "prediction_notes": [
+    "performance_notes": [
         "Games to watch: MIL @ LAD and TOR @ SEA",
         "LAD home advantage: 55.2%",
         "LAD performance - Our strongest pick today, medium confidence"
     ],
-    "pending_message": "2 games scheduled. Games to watch: MIL @ LAD and TOR @ SEA."
+    "analysis_message": "2 games scheduled. Games to watch: MIL @ LAD and TOR @ SEA."
 }
