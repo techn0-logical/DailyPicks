@@ -545,16 +545,16 @@ function createTodayGameCard(game) {
             </div>
             
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
+                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
                 <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
-                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
+                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
             
             <div class="game-card__prediction" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">
                 <div>
                     <strong style="color: #0f172a;">🎯 Predicted Winner:</strong><br>
-                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem; display: inline-flex; align-items: center;">
-                        ${getTeamNameWithLogo(game.predicted_winner, '20px')}
+                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem; display: inline-flex; align-items: center; text-shadow: 0 0 6px rgba(248, 250, 252, 0.5);">
+                        ${getTeamNameWithLogo(game.predicted_winner, '20px', 'subtle')}
                     </span>
                 </div>
                 <div class="game-card__confidence">${game.confidence}%</div>
@@ -626,12 +626,12 @@ function createTomorrowGameCard(game) {
                 <span class="badge badge--${isPlayoff ? 'warning' : 'info'}">${isPlayoff ? 'Playoff' : 'Preview'}</span>
             </div>
             <div class="game-card__matchup">
-                <span style="color: ${getTeamColors(game.away_team).primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.away_team, '24px')}</span> 
+                <span style="color: ${getTeamColors(game.away_team).primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
                 <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
-                <span style="color: ${getTeamColors(game.home_team).primary}; font-weight: 700; display: inline-flex; align-items: center;">${getTeamNameWithLogo(game.home_team, '24px')}</span>
+                <span style="color: ${getTeamColors(game.home_team).primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
             <div class="game-card__prediction">
-                <span style="display: inline-flex; align-items: center;">Predicted Winner: ${getTeamNameWithLogo(game.predicted_winner || game.early_prediction, '20px')}</span>
+                <span style="display: inline-flex; align-items: center;">Predicted Winner: ${getTeamNameWithLogo(game.predicted_winner || game.early_prediction, '20px', 'subtle')}</span>
                 <span class="game-card__confidence">${confidence ? confidence + '%' : ''}</span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #4a5568;">
