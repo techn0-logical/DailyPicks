@@ -68,6 +68,16 @@
         </div>
     </main>
 
+    <!-- Under Construction Overlay (injected statically so it appears before JS runs) -->
+    <div id="under-construction-overlay" class="under-construction-overlay" aria-hidden="true">
+        <div class="under-construction-card">
+            <h2>Site Under Construction</h2>
+            <p>We're working on new design and features. The site is currently hidden from public view while we update styles.</p>
+            <p class="muted">If you are a developer, you can disable this overlay from the dev console by calling <code>window.setUnderConstruction(false)</code>.</p>
+            <button id="uc-dismiss" class="btn btn-primary" onclick="window.setUnderConstruction(false)" style="display:none;">Dismiss (dev)</button>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p class="footer__disclaimer">

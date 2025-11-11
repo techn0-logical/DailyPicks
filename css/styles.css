@@ -658,3 +658,40 @@ body {
 .team-logo--glow {
     filter: brightness(1.6) saturate(1.1) contrast(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
 }
+
+/* Under Construction Overlay Styles */
+.under-construction-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 7, 18, 0.6);
+    backdrop-filter: blur(6px) saturate(0.8);
+    z-index: 9999;
+}
+
+.under-construction-card {
+    background: linear-gradient(135deg, #0b1220 0%, #111827 100%);
+    color: var(--text-primary);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    max-width: 680px;
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+}
+
+.under-construction-card h2 { margin-bottom: 0.5rem; }
+.under-construction-card p { color: var(--text-secondary); margin-bottom: 0.5rem; }
+
+/* When body has .uc-blur, apply blur to content below overlay */
+body.uc-blur .header,
+body.uc-blur .main,
+body.uc-blur .footer {
+    filter: blur(6px) grayscale(0.25) brightness(0.8);
+    pointer-events: none;
+}
+
+.btn { cursor: pointer; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; font-weight: 700; }
+.btn-primary { background: var(--accent-color); color: white; }

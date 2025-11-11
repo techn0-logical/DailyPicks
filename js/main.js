@@ -12,6 +12,30 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
+// Under-construction control: set to true to enable overlay by default
+let UNDER_CONSTRUCTION = true;
+
+// Expose toggle function globally for devs
+window.setUnderConstruction = function(enabled) {
+    UNDER_CONSTRUCTION = !!enabled;
+    const overlay = document.getElementById('under-construction-overlay');
+    if (!overlay) return;
+    if (UNDER_CONSTRUCTION) {
+        document.body.classList.add('uc-blur');
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.style.display = 'flex';
+    } else {
+        document.body.classList.remove('uc-blur');
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.style.display = 'none';
+    }
+};
+
+// Apply overlay state early (in case DOMContentLoaded already fired)
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    window.setUnderConstruction(UNDER_CONSTRUCTION);
+}
+
 async function initializeApp() {
     try {
         console.log('Starting DailyPicks initialization...');
@@ -38,6 +62,8 @@ async function initializeApp() {
         console.log('✅ Performance section populated');
         
         console.log('🎉 DailyPicks loaded successfully!');
+        // Re-apply under-construction state after initialization
+        window.setUnderConstruction && window.setUnderConstruction(UNDER_CONSTRUCTION);
     } catch (error) {
         console.error('❌ Error initializing app:', error);
         console.error('Error details:', error.stack);
