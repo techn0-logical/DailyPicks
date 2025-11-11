@@ -522,6 +522,7 @@ function createYesterdayGameCard(game) {
 
 // Create game card for today's games
 function createTodayGameCard(game) {
+    // Mirror the yesterday card style but adapt for today's data (no actual result yet)
     const homeTeam = getTeamName(game.home_team);
     const awayTeam = getTeamName(game.away_team);
     const predictedWinner = getTeamName(game.predicted_winner);
@@ -529,75 +530,66 @@ function createTodayGameCard(game) {
     const awayTeamColors = getTeamColors(game.away_team);
     const confidenceLevel = getConfidenceLevel(game.confidence);
     const isPending = game.status === 'pending' || game.game_status?.includes('PENDING');
-    
+
     return `
-        <div class="game-card ${game.recommendation === 'Strong Pick' ? 'game-card--featured' : ''}" 
-             data-confidence="${game.confidence}" 
-             style="${isPending ? 'border-left: 6px solid #f59e0b; background: linear-gradient(135deg, #1e293b 0%, #374151 100%);' : ''}">
-            
+        <div class="game-card" style="background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);">
             <div class="game-card__header">
-                <span class="game-card__time">
-                    ${isPending ? '⏳ ' + (game.game_status || 'PENDING') : '� ' + (game.game_time || 'TBD')}
-                </span>
+                <span class="game-card__time" style="text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${isPending ? '⏳ Pending' : (game.game_time || 'TBD')}</span>
                 <span class="badge ${isPending ? 'badge--warning' : getBadgeClass(game.recommendation)}">
-                    ${isPending ? '⏳ Pending' : game.recommendation}
+                    ${isPending ? '⏳ Pending' : (game.recommendation || '')}
                 </span>
             </div>
-            
+
             <div class="game-card__matchup">
-                <span style="color: ${awayTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
-                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
-                <span style="color: ${homeTeamColors.primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
+                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span>
+                <span style="color: #cbd5e1; margin: 0 0.5rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">@</span>
+                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
-            
-            <div class="game-card__prediction" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">
+
+            <div class="prediction-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; padding: 0 0.25rem;">
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2); padding: 0.75rem; min-width: 0;">
+                    <div>
+                        <strong style="color: #60a5fa; font-size: 0.875rem;">🎯 Predicted:</strong><br>
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
+                            ${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #64748b; box-shadow: 0 4px 8px rgba(100, 116, 139, 0.12); padding: 0.75rem; min-width: 0;">
+                    <div>
+                        <strong style="color: #64748b; font-size: 0.875rem;">📌 Status:</strong><br>
+                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
+                            ${isPending ? 'Pending' : 'Scheduled'}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #334155; border-radius: 0.5rem; border: 1px solid #475569;">
                 <div>
-                    <strong style="color: #0f172a;">🎯 Predicted Winner:</strong><br>
-                    <span style="color: ${game.predicted_winner === game.home_team ? homeTeamColors.primary : awayTeamColors.primary}; font-weight: 700; font-size: 1.125rem; display: inline-flex; align-items: center; text-shadow: 0 0 6px rgba(248, 250, 252, 0.5);">
-                        ${getTeamNameWithLogo(game.predicted_winner, '20px', 'subtle')}
-                    </span>
-                </div>
-                <div class="game-card__confidence">${game.confidence}%</div>
-            </div>
-            
-            <div class="confidence-bar">
-                <div class="confidence-bar__fill" style="width: ${game.confidence}%"></div>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; margin: 1rem 0; font-size: 0.875rem;">
-                <div style="color: #64748b;">
-                    <strong>Win Probability:</strong> ${Math.round(game.win_probability * 100)}%
-                </div>
-                <div style="color: #64748b;">
-                    <strong>Confidence Level:</strong> 
-                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.25rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
+                    <span style="font-size: 0.875rem; color: #cbd5e1; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Confidence:</span>
+                    <span style="font-weight: 700; color: #f8fafc; margin-left: 0.5rem; text-shadow: 0 0 4px rgba(248, 250, 252, 0.5);">${game.confidence}%</span>
+                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem; text-shadow: none;">${confidenceLevel.label}</span>
                 </div>
             </div>
-            
+
             ${game.model_used ? `
-                <div style="margin-bottom: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #3b82f6;">
-                    <span style="font-size: 0.75rem; color: #1e40af; font-weight: 600;">🤖 Model:</span>
-                    <span style="font-size: 0.875rem; color: #1e40af; margin-left: 0.5rem;">${game.model_used}</span>
-                    ${game.prediction_time ? `<br><span style="font-size: 0.75rem; color: #64748b;">⏰ Made: ${game.prediction_time}</span>` : ''}
+                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
+                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🤖 Model</h4>
+                    <div style="color: #cbd5e1;">${game.model_used}${game.prediction_time ? ' • ' + game.prediction_time : ''}</div>
                 </div>
             ` : ''}
-            
-            ${isPending && game.actual_result ? `
-                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 0.5rem; border: 1px solid #f59e0b;">
-                    <span style="font-size: 0.75rem; color: #92400e; font-weight: 600;">📊 Current Status:</span>
-                    <p style="font-size: 0.875rem; color: #92400e; margin: 0.25rem 0 0 0; font-weight: 600;">${game.actual_result}</p>
-                </div>
-            ` : ''}
-            
+
             ${game.analysis ? `
-                <div style="margin-bottom: 1rem; padding: 0.75rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 0.5rem; border: 1px solid #22c55e;">
-                    <span style="font-size: 0.75rem; color: #166534; font-weight: 600;">💡 Analysis:</span>
-                    <p style="font-size: 0.875rem; color: #166534; margin: 0.25rem 0 0 0; font-style: italic;">${game.analysis}</p>
+                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
+                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">💡 Analysis</h4>
+                    <div style="color: #cbd5e1;">${game.analysis}</div>
                 </div>
             ` : ''}
-            
+
             ${game.key_factors && game.key_factors.length > 0 ? `
-                <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
                     <strong style="color: #475569; font-size: 0.875rem;">🔍 Key Factors:</strong>
                     <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.875rem; color: #64748b;">
                         ${game.key_factors.map(factor => `<li style="margin-bottom: 0.25rem;">${factor}</li>`).join('')}
