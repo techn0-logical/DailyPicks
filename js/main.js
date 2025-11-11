@@ -446,37 +446,33 @@ function createYesterdayGameCard(game) {
     const confidenceLevel = getConfidenceLevel(game.confidence);
     
     return `
-        <div class="game-card" style="background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);">
+        <div class="game-card game-card--dark">
             <div class="game-card__header">
-                <span class="game-card__time" style="text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">📊 Game Analysis</span>
+                <span class="game-card__time glow-text">📊 Game Analysis</span>
                 ${hasResult ? `<span class="badge ${isCorrect ? 'badge--success' : 'badge--danger'}">
                     ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
                 </span>` : ''}
             </div>
             
             <div class="game-card__matchup">
-                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
-                <span style="color: #cbd5e1; margin: 0 0.5rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">@</span> 
-                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.away_team, '24px', true)}</span>
+                <span class="matchup-sep">@</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
             
-            <div class="prediction-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; padding: 0 0.25rem;">
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2); padding: 0.75rem; min-width: 0;">
+            <div class="prediction-grid">
+                <div class="prediction-box prediction-box--predicted">
                     <div>
                         <strong style="color: #60a5fa; font-size: 0.875rem;">🎯 Predicted:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
-                            ${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}
-                        </span>
+                        <span class="subtle-glow-text">${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}</span>
                     </div>
                 </div>
                 
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2); padding: 0.75rem; min-width: 0;">
+                <div class="prediction-box" style="border: 2px solid ${isCorrect ? '#22c55e' : '#ef4444'}; box-shadow: 0 4px 8px rgba(${isCorrect ? '34, 197, 94' : '239, 68, 68'}, 0.2);">
                     <div>
                         <strong style="color: ${isCorrect ? '#22c55e' : '#ef4444'}; font-size: 0.875rem;">🏁 Actual:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
-                            ${getTeamNameWithLogo(game.actual_winner, '18px', 'subtle')}
-                        </span><br>
-                        <small style="color: #cbd5e1; font-size: 0.75rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Score: ${game.actual_score.join('-')}</small>
+                        <span class="subtle-glow-text">${getTeamNameWithLogo(game.actual_winner, '18px', 'subtle')}</span><br>
+                        <small style="color: #cbd5e1; font-size: 0.75rem;">Score: ${game.actual_score.join('-')}</small>
                     </div>
                 </div>
             </div>
@@ -490,17 +486,17 @@ function createYesterdayGameCard(game) {
             </div>
             
             ${game.game_details ? `
-                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
-                    <h4 style="color: #60a5fa; margin-bottom: 0.75rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🏟️ Game Details</h4>
-                    <div style="margin-bottom: 0.75rem; color: #cbd5e1; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">
+                <div class="game-details">
+                    <h4 class="game-details__title">🏟️ Game Details</h4>
+                    <div style="margin-bottom: 0.75rem; color: #cbd5e1;">
                         ${getTeamNameWithLogo(game.away_team, '20px', true)} @ ${getTeamNameWithLogo(game.home_team, '20px', true)}<br>
-                        <strong style="color: #f8fafc; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">Final:</strong> ${getTeamNameWithLogo(game.actual_winner, '18px', true)} ${game.actual_score[1]}-${game.actual_score[0]}
+                        <strong class="glow-text">Final:</strong> ${getTeamNameWithLogo(game.actual_winner, '18px', true)} ${game.actual_score[1]}-${game.actual_score[0]}
                     </div>
                     
                     ${game.game_details.game_highlights ? `
                         <div style="margin-bottom: 0.75rem;">
-                            <strong style="color: #f8fafc; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">Game Highlights:</strong>
-                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">
+                            <strong class="glow-text">Game Highlights:</strong>
+                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
                                 Duration: ${game.game_details.game_highlights.duration}
                             </div>
                         </div>
@@ -508,8 +504,8 @@ function createYesterdayGameCard(game) {
                     
                     ${game.game_details.key_stats ? `
                         <div>
-                            <strong style="color: #f8fafc; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">Key Stats:</strong>
-                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">
+                            <strong class="glow-text">Key Stats:</strong>
+                            <div style="margin: 0.25rem 0 0 0; color: #cbd5e1; font-size: 0.875rem;">
                                 ${game.game_details.key_stats.map(stat => `${stat}`).join('<br>')}
                             </div>
                         </div>
@@ -532,58 +528,54 @@ function createTodayGameCard(game) {
     const isPending = game.status === 'pending' || game.game_status?.includes('PENDING');
 
     return `
-        <div class="game-card" style="background: linear-gradient(135deg, #1e293b 0%, #1f2937 100%);">
+        <div class="game-card game-card--dark">
             <div class="game-card__header">
-                <span class="game-card__time" style="text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${isPending ? '⏳ Pending' : (game.game_time || 'TBD')}</span>
+                <span class="game-card__time glow-text">${isPending ? '⏳ Pending' : (game.game_time || 'TBD')}</span>
                 <span class="badge ${isPending ? 'badge--warning' : getBadgeClass(game.recommendation)}">
                     ${isPending ? '⏳ Pending' : (game.recommendation || '')}
                 </span>
             </div>
 
             <div class="game-card__matchup">
-                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span>
-                <span style="color: #cbd5e1; margin: 0 0.5rem; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">@</span>
-                <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 16px rgba(248, 250, 252, 0.4);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.away_team, '24px', true)}</span>
+                <span class="matchup-sep">@</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
 
-            <div class="prediction-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; padding: 0 0.25rem;">
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #60a5fa; box-shadow: 0 4px 8px rgba(96, 165, 250, 0.2); padding: 0.75rem; min-width: 0;">
+            <div class="prediction-grid">
+                <div class="prediction-box prediction-box--predicted">
                     <div>
                         <strong style="color: #60a5fa; font-size: 0.875rem;">🎯 Predicted:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
-                            ${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}
-                        </span>
+                        <span class="subtle-glow-text">${getTeamNameWithLogo(game.predicted_winner, '18px', 'subtle')}</span>
                     </div>
                 </div>
 
-                <div class="game-card__prediction" style="background: linear-gradient(135deg, #334155 0%, #475569 100%); border: 2px solid #64748b; box-shadow: 0 4px 8px rgba(100, 116, 139, 0.12); padding: 0.75rem; min-width: 0;">
+                <div class="prediction-box">
                     <div>
                         <strong style="color: #64748b; font-size: 0.875rem;">📌 Status:</strong><br>
-                        <span style="color: #f8fafc; font-weight: 700; display: inline-flex; align-items: center; font-size: 0.875rem; overflow: hidden; text-shadow: 0 0 4px rgba(248, 250, 252, 0.3);">
-                            ${isPending ? 'Pending' : 'Scheduled'}
-                        </span>
+                        <span class="subtle-glow-text">${isPending ? 'Pending' : 'Scheduled'}</span>
                     </div>
                 </div>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; padding: 0.75rem; background: #334155; border-radius: 0.5rem; border: 1px solid #475569;">
                 <div>
-                    <span style="font-size: 0.875rem; color: #cbd5e1; text-shadow: 0 0 4px rgba(203, 213, 225, 0.5);">Confidence:</span>
-                    <span style="font-weight: 700; color: #f8fafc; margin-left: 0.5rem; text-shadow: 0 0 4px rgba(248, 250, 252, 0.5);">${game.confidence}%</span>
-                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem; text-shadow: none;">${confidenceLevel.label}</span>
+                    <span style="font-size: 0.875rem; color: #cbd5e1;">Confidence:</span>
+                    <span style="font-weight: 700; color: #f8fafc; margin-left: 0.5rem;">${game.confidence}%</span>
+                    <span class="badge badge--${confidenceLevel.type}" style="margin-left: 0.5rem; font-size: 0.625rem;">${confidenceLevel.label}</span>
                 </div>
             </div>
 
             ${game.model_used ? `
-                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
-                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">🤖 Model</h4>
+                <div class="game-details">
+                    <h4 class="game-details__title">🤖 Model</h4>
                     <div style="color: #cbd5e1;">${game.model_used}${game.prediction_time ? ' • ' + game.prediction_time : ''}</div>
                 </div>
             ` : ''}
 
             ${game.analysis ? `
-                <div style="margin-bottom: 1rem; padding: 1rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 0.5rem; border: 1px solid #64748b;">
-                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem; font-size: 1rem; text-shadow: 0 0 4px rgba(96, 165, 250, 0.5);">💡 Analysis</h4>
+                <div class="game-details">
+                    <h4 class="game-details__title">💡 Analysis</h4>
                     <div style="color: #cbd5e1;">${game.analysis}</div>
                 </div>
             ` : ''}
@@ -618,11 +610,11 @@ function createTomorrowGameCard(game) {
                 <span class="badge badge--${isPlayoff ? 'warning' : 'info'}">${isPlayoff ? 'Playoff' : 'Preview'}</span>
             </div>
             <div class="game-card__matchup">
-                <span style="color: ${getTeamColors(game.away_team).primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.away_team, '24px', true)}</span> 
-                <span style="color: #64748b; margin: 0 0.5rem;">@</span> 
-                <span style="color: ${getTeamColors(game.home_team).primary}; font-weight: 700; display: inline-flex; align-items: center; text-shadow: 0 0 8px rgba(248, 250, 252, 0.6), 0 0 12px rgba(248, 250, 252, 0.35);">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.away_team, '24px', true)}</span>
+                <span class="matchup-sep">@</span>
+                <span class="glow-text">${getTeamNameWithLogo(game.home_team, '24px', true)}</span>
             </div>
-            <div class="game-card__prediction">
+            <div class="game-card__prediction prediction-box">
                 <span style="display: inline-flex; align-items: center;">Predicted Winner: ${getTeamNameWithLogo(game.predicted_winner || game.early_prediction, '20px', 'subtle')}</span>
                 <span class="game-card__confidence">${confidence ? confidence + '%' : ''}</span>
             </div>
@@ -665,17 +657,16 @@ function getTeamLogo(teamCode) {
 function getTeamNameWithLogo(teamCode, size = '20px', isLightVersion = false) {
     const teamName = getTeamName(teamCode);
     const teamLogo = getTeamLogo(teamCode);
-    
+
     if (teamLogo) {
-        let lightStyle = '';
-        if (isLightVersion === 'subtle') {
-            lightStyle = 'opacity: 1.0; filter: brightness(1.2) saturate(1.05) drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));';
-        } else if (isLightVersion) {
-            lightStyle = 'opacity: 1.0; filter: brightness(1.6) saturate(1.1) contrast(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));';
-        }
-        return `<img src="${teamLogo}" alt="${teamName}" style="width: ${size}; height: ${size}; vertical-align: middle; margin-right: 0.5rem; object-fit: contain; ${lightStyle}"/>${teamName}`;
+        const numericSize = typeof size === 'string' && size.endsWith('px') ? size : size + 'px';
+        const classList = ['team-logo'];
+        if (isLightVersion === 'subtle') classList.push('team-logo--subtle');
+        else if (isLightVersion) classList.push('team-logo--glow');
+
+        return `<img src="${teamLogo}" alt="${teamName}" class="${classList.join(' ')}" style="width: ${numericSize}; height: ${numericSize};"/> <span class="team-name">${teamName}</span>`;
     }
-    return teamName;
+    return `<span class="team-name">${teamName}</span>`;
 }
 
 function getTeamColors(teamCode) {
